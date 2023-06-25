@@ -61,6 +61,20 @@ npx husky add .husky/pre-commit "npx lint-staged"
 
 https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore
 
+### OpenAPI ジェネレーター
+
+https://openapi-generator.tech/docs/installation/
+
+```bash
+brew install openapi-generator
+```
+
+#### gen
+
+```bash
+openapi-generator generate -i /Users/sky0621/work/github.com/sky0621/cv-admin/schema/openapi.yml -g typescript-fetch -o ./lib/api/
+```
+
 ## Getting Started
 
 First, run the development server:
