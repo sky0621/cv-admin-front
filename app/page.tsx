@@ -16,6 +16,12 @@ export default function Home() {
       <div>
         <Link href="/books">BOOKS</Link>
       </div>
+      <div>
+        <Link href="/throwerror">THROWERROR</Link>
+      </div>
+      <div>
+        <Link href="/throwcomponenterror">THROWCOMPONENTERROR</Link>
+      </div>
     </>
   );
 }
