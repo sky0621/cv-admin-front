@@ -1,17 +1,17 @@
 import { ReactNode } from "react";
 
-export default function DefaultLayout({ children }: { children: ReactNode }) {
+export default function SkilltagsLayout({ children }: { children: ReactNode }) {
   return (
-    <main
+    <div
       style={{
         borderStyle: "solid",
         borderWidth: "2px",
-        borderColor: "red",
+        borderColor: "yellow",
         padding: "4px",
       }}
     >
-      <div>[DEFAULT LAYOUT]</div>
+      <div>[SkilltagsLayout]</div>
       <div>{children}</div>
-    </main>
+    </div>
   );
 }

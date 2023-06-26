@@ -17,7 +17,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body className={inter.className} style={{ padding: "12px" }}>
         <DefaultLayout>{children}</DefaultLayout>
       </body>
     </html>
