@@ -24,7 +24,6 @@ export default async function RootLayout(props: {
           <div>{props.career}</div>
           <div>{props.note}</div>
         </div>
-        <div className="m-4">#{props.auth}#</div>
       </body>
     </html>
   );

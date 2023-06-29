@@ -25,6 +25,12 @@ export default function Home() {
       <div>
         <Link href="/photos/1">Photos/1</Link>
       </div>
+      <div>
+        <Link href="/settings/1">settings/1</Link>
+      </div>
+      <div>
+        <Link href="/settings/2">settings/2</Link>
+      </div>
     </>
   );
 }
