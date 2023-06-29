@@ -22,6 +22,9 @@ export default function Home() {
       <div>
         <Link href="/throwcomponenterror">THROWCOMPONENTERROR</Link>
       </div>
+      <div>
+        <Link href="/photos/1">Photos/1</Link>
+      </div>
     </>
   );
 }
