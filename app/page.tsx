@@ -31,6 +31,12 @@ export default function Home() {
       <div>
         <Link href="/settings/2">settings/2</Link>
       </div>
+      <div>
+        <Link href="/posts/1">posts/1</Link>
+      </div>
+      <div>
+        <Link href="/users3/1">users3/1</Link>
+      </div>
     </>
   );
 }
