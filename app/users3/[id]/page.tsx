@@ -1,4 +1,5 @@
 import { Configuration, UsersApi } from "@/lib/api";
+import Link from "next/link";
 
 export default async function Users3Page({
   params,
@@ -23,6 +24,10 @@ export default async function Users3Page({
           </div>
         );
       })}
+      <div>&nbsp;</div>
+      <div>
+        <Link href="/">To Home</Link>
+      </div>
     </>
   );
 }
