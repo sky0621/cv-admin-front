@@ -1,4 +1,4 @@
-import { Configuration, UsersApi } from "@/_lib/api";
+import { Configuration, UsersApi } from "@/lib/api";
 import Link from "next/link";
 
 export default async function Users3Page({

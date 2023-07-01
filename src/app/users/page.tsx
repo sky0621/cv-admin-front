@@ -1,4 +1,4 @@
-import UsersPageMain from "@/_components/pages/users";
+import UsersPageMain from "@/components/pages/users";
 import Link from "next/link";
 
 type User = {
