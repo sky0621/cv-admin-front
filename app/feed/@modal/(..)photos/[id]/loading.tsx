@@ -1,7 +1,7 @@
 export default function Loading() {
   return (
     <>
-      <div className="bg-blue-500">users loading...</div>
+      <div className="bg-yellow-500">photo loading...</div>
     </>
   );
 }

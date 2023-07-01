@@ -1,7 +1,5 @@
-import throwerr from "@/components/err/throwerr";
-
 export default function ThrowComponentErrorPage() {
-  throwerr();
+  //  throwerr();
   return (
     <>
       <div>err</div>

@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-export default function PhotoPage() {
+export default async function PhotoPage() {
+  await (() => {
+    setTimeout(() => {
+      console.log("photo");
+    }, 2000);
+  })();
   return (
     <>
       <div className="container mx-auto my-10">

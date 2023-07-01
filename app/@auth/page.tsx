@@ -1,4 +1,4 @@
-import Modal from "@/components/modal/Modal";
+import Modal from "@/_components/modal/Modal";
 
 export default function Login() {
   return (

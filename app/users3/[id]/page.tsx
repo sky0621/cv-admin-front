@@ -1,4 +1,4 @@
-import { Configuration, UsersApi } from "@/lib/api";
+import { Configuration, UsersApi } from "@/_lib/api";
 import Link from "next/link";
 
 export default async function Users3Page({
@@ -6,6 +6,11 @@ export default async function Users3Page({
 }: {
   params: { id: string };
 }) {
+  await (() => {
+    setTimeout(() => {
+      console.log("user3");
+    }, 1000);
+  })();
   console.log(params.id);
   const { API_URL } = process.env;
   console.log(API_URL);

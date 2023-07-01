@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  await (() => {
+    setTimeout(() => {
+      console.log("home");
+    }, 1000);
+  })();
   return (
     <>
       <div>Home</div>
@@ -15,9 +20,6 @@ export default function Home() {
       </div>
       <div>
         <Link href="/books">BOOKS</Link>
-      </div>
-      <div>
-        <Link href="/throwerror">THROWERROR</Link>
       </div>
       <div>
         <Link href="/throwcomponenterror">THROWCOMPONENTERROR</Link>
