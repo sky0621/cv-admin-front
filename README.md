@@ -75,6 +75,18 @@ brew install openapi-generator
 openapi-generator generate -i /Users/sky0621/work/github.com/sky0621/cv-admin/schema/openapi.yml -g typescript-fetch -o ./lib/api/
 ```
 
+### Ant Design
+
+```
+npm install antd
+```
+
+### reset.css
+
+```
+npm install @acab/reset.css
+```
+
 ## Getting Started
 
 First, run the development server:
