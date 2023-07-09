@@ -17,4 +17,7 @@
 /* Headerのデフォカラー上書き */
 :where(.css-dev-only-do-not-override-14wwjjs).ant-layout-header {
   background-color: var(--base-bg-color);
+  padding: 0;
+  height: 3em;
+  line-height: 1.5em;
 }

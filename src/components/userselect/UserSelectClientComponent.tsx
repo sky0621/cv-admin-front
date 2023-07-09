@@ -9,20 +9,20 @@ export type UsersSelectOption = {
   label: string;
 };
 
-type Props = {
+export type UsersSelectProps = {
   defaultValue: string;
   options: UsersSelectOption[];
-  handleChange?: HandleUsersSelectChange;
+  handleChange: HandleUsersSelectChange;
 };
 
-const UsersSelect = (props: Props) => {
+const UserSelectClientComponent = (props: UsersSelectProps) => {
   return (
     <Select
       defaultValue={props.defaultValue}
       options={props.options}
-      //      onChange={props.handleChange}
+      onChange={props.handleChange}
     />
   );
 };
 
-export default UsersSelect;
+export default UserSelectClientComponent;
