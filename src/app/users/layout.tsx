@@ -1,9 +1,4 @@
-"use client";
-
 import { ReactNode } from "react";
-import { Layout } from "antd";
-
-const { Header, Content } = Layout;
 
 type Props = {
   header: ReactNode;
@@ -12,10 +7,10 @@ type Props = {
 
 const UsersLayout = (props: Props) => {
   return (
-    <Layout>
-      <Header>{props.header}</Header>
-      <Content>{props.children}</Content>
-    </Layout>
+    <div>
+      <div>{props.header}</div>
+      <div>{props.children}</div>
+    </div>
   );
 };
 

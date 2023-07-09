@@ -1,3 +1,5 @@
+"use client";
+
 import { Select } from "antd";
 
 export type HandleUsersSelectChange = (v: string) => void;

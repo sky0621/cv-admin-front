@@ -1,7 +1,9 @@
-export default async function Home() {
+const RootPage = () => {
   return (
     <>
-      <div>Home</div>
+      <div>Root</div>
     </>
   );
-}
+};
+
+export default RootPage;

@@ -95,6 +95,22 @@ https://github.com/mayank99/reset.css
 npm install @acab/reset.css
 ```
 
+### tailwindcss
+
+https://tailwindcss.com/docs/guides/nextjs
+
+```
+npm install -D tailwindcss postcss autoprefixer
+```
+
+```
+npx tailwindcss init -p
+```
+
+```
+
+```
+
 ### recoil
 
 https://recoiljs.org/
