@@ -21,6 +21,7 @@ const UserSelectClientComponent = (props: UsersSelectProps) => {
       defaultValue={props.defaultValue}
       options={props.options}
       onChange={props.handleChange}
+      style={{ width: "100%" }}
     />
   );
 };

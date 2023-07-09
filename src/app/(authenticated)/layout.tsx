@@ -3,8 +3,9 @@
 import { ReactNode } from "react";
 import { Layout } from "antd";
 import HeaderContainer from "@/components/header/HeaderContainer";
+import SideMenuContainer from "@/components/sidemenu/SideMenuContainer";
 
-const { Header, Content } = Layout;
+const { Sider, Header, Content } = Layout;
 
 type Props = {
   children: ReactNode;
@@ -13,10 +14,15 @@ type Props = {
 const UsersLayout = (props: Props) => {
   return (
     <Layout>
-      <Header>
-        <HeaderContainer />
-      </Header>
-      <Content>{props.children}</Content>
+      <Sider>
+        <SideMenuContainer />
+      </Sider>
+      <Layout>
+        <Header>
+          <HeaderContainer />
+        </Header>
+        <Content>{props.children}</Content>
+      </Layout>
     </Layout>
   );
 };

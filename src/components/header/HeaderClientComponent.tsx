@@ -1,11 +1,7 @@
-import UserSelectContainer from "@/components/userselect/UserSelectContainer";
-
 const HeaderClientComponent = () => {
   return (
     <>
-      <div>
-        <UserSelectContainer />
-      </div>
+      <div>各画面のタイトル</div>
     </>
   );
 };

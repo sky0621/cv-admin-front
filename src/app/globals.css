@@ -1,20 +1,27 @@
 @import "@acab/reset.css";
-/*@tailwind base;
-@tailwind components;
-@tailwind utilities;
-*/
 
 :root {
-  --base-bg-color: rgb(234, 234, 234);
-  --base-font-color: rgb(14, 14, 14);
+  --base-bg-color: #fafafa;
+  --base-font-color: #141414;
 }
 
-/*body {
+body {
   background-color: var(--base-bg-color);
   color: var(--base-font-color);
-}*/
+}
 
-/* Headerのデフォカラー上書き */
+/* <Layout>のデフォルトスタイルを上書き */
+:where(.css-dev-only-do-not-override-14wwjjs).ant-layout {
+  background-color: var(--base-bg-color);
+  height: 100%;
+}
+
+/* <Sider>のデフォルトスタイルを上書き */
+:where(.css-dev-only-do-not-override-14wwjjs).ant-layout .ant-layout-sider {
+  background-color: var(--base-bg-color);
+}
+
+/* <Header>のデフォルトスタイルを上書き */
 :where(.css-dev-only-do-not-override-14wwjjs).ant-layout-header {
   background-color: var(--base-bg-color);
   padding: 0;
