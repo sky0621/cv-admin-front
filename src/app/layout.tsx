@@ -6,10 +6,12 @@ export const metadata = {
   description: "",
 };
 
-export default async function RootLayout(props: { children: ReactNode }) {
+const RootLayout = (props: { children: ReactNode }) => {
   return (
     <html lang="ja">
       <body>{props.children}</body>
     </html>
   );
-}
+};
+
+export default RootLayout;

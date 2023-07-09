@@ -72,19 +72,35 @@ brew install openapi-generator
 #### gen
 
 ```bash
-openapi-generator generate -i /Users/sky0621/work/github.com/sky0621/cv-admin/schema/openapi.yml -g typescript-fetch -o ./lib/api/
+openapi-generator generate -i /Users/sky0621/work/github.com/sky0621/cv-admin/schema/openapi.yml -g typescript-fetch -o ./src/lib/api/
 ```
 
 ### Ant Design
+
+https://ant.design/
 
 ```
 npm install antd
 ```
 
+```
+npm install @ant-design/colors
+```
+
 ### reset.css
+
+https://github.com/mayank99/reset.css
 
 ```
 npm install @acab/reset.css
+```
+
+### recoil
+
+https://recoiljs.org/
+
+```
+npm install recoil
 ```
 
 ## Getting Started

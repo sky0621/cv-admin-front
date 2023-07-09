@@ -1333,6 +1333,43 @@ export class UsersApi extends runtime.BaseAPI {
   }
 
   /**
+   * ユーザー一覧を取得する。
+   * ユーザー一覧取得
+   */
+  async usersGetRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction
+  ): Promise<runtime.ApiResponse<Array<UserAttribute>>> {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    const response = await this.request(
+      {
+        path: `/users`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      jsonValue.map(UserAttributeFromJSON)
+    );
+  }
+
+  /**
+   * ユーザー一覧を取得する。
+   * ユーザー一覧取得
+   */
+  async usersGet(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction
+  ): Promise<Array<UserAttribute>> {
+    const response = await this.usersGetRaw(initOverrides);
+    return await response.value();
+  }
+
+  /**
    * ユーザーアカウントを登録する。
    * ユーザーアカウント登録
    */
