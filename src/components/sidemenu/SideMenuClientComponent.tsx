@@ -1,7 +1,16 @@
-import UserSelectContainer from "@/components/userselect/UserSelectContainer";
+"use client";
+
+import { Layout } from "antd";
+import { UserSelect } from "@/components/userselect";
+
+const { Sider } = Layout;
 
 const SideMenuClientComponent = () => {
-  return <UserSelectContainer />;
+  return (
+    <Sider>
+      <UserSelect />
+    </Sider>
+  );
 };
 
 export default SideMenuClientComponent;

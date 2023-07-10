@@ -3,6 +3,11 @@ import UserSelectClientComponent, {
   UsersSelectOption,
 } from "@/components/userselect/UserSelectClientComponent";
 import { UsersApi } from "@/lib/api";
+import { Suspense } from "react";
+
+const UserSelectFallback = () => {
+  return <>--- Fallback ---</>;
+};
 
 const UserSelectContainer = async () => {
   const defaultValue = "0";
@@ -18,11 +23,13 @@ const UserSelectContainer = async () => {
   };
 
   return (
-    <UserSelectClientComponent
-      defaultValue={defaultValue}
-      options={options}
-      handleChange={handleChange}
-    />
+    <Suspense fallback={<UserSelectFallback />}>
+      <UserSelectClientComponent
+        defaultValue={defaultValue}
+        options={options}
+        handleChange={handleChange}
+      />
+    </Suspense>
   );
 };
 

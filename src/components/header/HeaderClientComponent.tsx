@@ -1,7 +1,13 @@
+"use client";
+
+import { Layout } from "antd";
+
+const { Header } = Layout;
+
 const HeaderClientComponent = () => {
   return (
     <>
-      <div>各画面のタイトル</div>
+      <Header>各画面のタイトル</Header>
     </>
   );
 };
