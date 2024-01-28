@@ -5,6 +5,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import { ReactNode } from "react";
 import { magenta } from "@ant-design/colors";
+import AppLayout from "@/app/dashboard/_components/AppLayout/AppLayout";
 
 const NotoSansJP = Noto_Sans_JP({
   weight: ["400", "500"],
@@ -31,19 +32,20 @@ export default function RootLayout({
             token: {
               colorPrimary: magenta.primary,
               colorInfo: magenta.primary,
-              colorTextBase: "#000000db",
-              borderRadius: 12,
+              borderRadius: 8,
             },
             components: {
               Layout: {
                 headerColor: "#fff",
                 headerBg: magenta[9],
-                siderBg: magenta[0],
+                colorBgBase: "#fff",
               },
             },
           }}
         >
-          <AntdRegistry>{children}</AntdRegistry>
+          <AntdRegistry>
+            <AppLayout title="CV Admin Front">{children}</AppLayout>
+          </AntdRegistry>
         </ConfigProvider>
       </body>
     </html>

@@ -3,32 +3,37 @@
 import { Layout } from "antd";
 import { ReactNode } from "react";
 
-const { Sider, Header, Content } = Layout;
+const { Header, Content } = Layout;
 
 type Props = {
+  title: string;
   children: ReactNode;
 };
 
-const AppLayout = ({ children }: Props) => {
+const AppLayout = ({ title, children }: Props) => {
   return (
-    <Layout>
-      <Sider>xxx</Sider>
-      <Layout>
-        <Header
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 1,
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            fontSize: "2rem",
-          }}
-        >
-          CV-Admin-front
-        </Header>
-        <Content>{children}</Content>
-      </Layout>
+    <Layout data-id="LAYOUT">
+      <Header
+        data-id="HEADER"
+        style={{
+          fontSize: "2rem",
+          minWidth: "330px",
+        }}
+      >
+        {title}
+      </Header>
+      <Content
+        data-id="CONTENT"
+        style={{
+          margin: "18px",
+          padding: "18px",
+          backgroundColor: "#fff",
+          borderRadius: 16,
+          minWidth: "330px",
+        }}
+      >
+        {children}
+      </Content>
     </Layout>
   );
 };

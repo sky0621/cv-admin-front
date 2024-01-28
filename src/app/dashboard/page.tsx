@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "antd";
+import Title from "antd/es/typography/Title";
 
 const DashboardPage = () => {
   const click = async () => {
@@ -9,7 +10,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <div>Dashboard</div>
+      <Title level={2}>Dashboard</Title>
       <Button onClick={click}>push</Button>
     </>
   );
