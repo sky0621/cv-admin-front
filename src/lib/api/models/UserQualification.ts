@@ -66,7 +66,7 @@ export function UserQualificationFromJSON(json: any): UserQualification {
 
 export function UserQualificationFromJSONTyped(
   json: any,
-  ignoreDiscriminator: boolean
+  ignoreDiscriminator: boolean,
 ): UserQualification {
   if (json === undefined || json === null) {
     return json;
@@ -96,7 +96,7 @@ export function UserQualificationToJSON(value?: UserQualification | null): any {
     gotDate:
       value.gotDate === undefined
         ? undefined
-        : value.gotDate.toISOString().substr(0, 10),
+        : value.gotDate.toISOString().substring(0, 10),
     memo: value.memo,
   };
 }

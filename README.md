@@ -4,10 +4,10 @@
 
 ```
 node -v
-v18.15.0
+v20.5.0
 
 npm -v
-9.7.2
+10.1.0
 ```
 
 ## setup
@@ -87,6 +87,10 @@ npm install antd
 npm install @ant-design/colors
 ```
 
+```
+npm install @ant-design/nextjs-registry
+```
+
 ### reset.css
 
 https://github.com/mayank99/reset.css
@@ -95,28 +99,18 @@ https://github.com/mayank99/reset.css
 npm install @acab/reset.css
 ```
 
-### tailwindcss
-
-https://tailwindcss.com/docs/guides/nextjs
-
-```
-npm install -D tailwindcss postcss autoprefixer
-```
-
-```
-npx tailwindcss init -p
-```
-
-```
-
-```
-
 ### recoil
 
 https://recoiljs.org/
 
 ```
 npm install recoil
+```
+
+### zod
+
+```
+npm install zod
 ```
 
 ## Getting Started
@@ -128,8 +122,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and
-load Inter, a custom Google Font.

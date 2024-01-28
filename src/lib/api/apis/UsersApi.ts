@@ -25,7 +25,7 @@ import type {
   UserNoteOwn,
   UserQualification,
   UserSkillTag,
-} from "../models";
+} from "../models/index";
 import {
   SkilltagsPost400ResponseFromJSON,
   SkilltagsPost400ResponseToJSON,
@@ -49,7 +49,7 @@ import {
   UserQualificationToJSON,
   UserSkillTagFromJSON,
   UserSkillTagToJSON,
-} from "../models";
+} from "../models/index";
 
 export interface UsersByUserIdActivitiesGetRequest {
   byUserId: number;
@@ -152,7 +152,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdActivitiesGetRaw(
     requestParameters: UsersByUserIdActivitiesGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserActivity>>> {
     if (
       requestParameters.byUserId === null ||
@@ -160,7 +160,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdActivitiesGet."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdActivitiesGet.",
       );
     }
 
@@ -172,17 +172,17 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/activities`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserActivityFromJSON)
+      jsonValue.map(UserActivityFromJSON),
     );
   }
 
@@ -192,11 +192,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdActivitiesGet(
     requestParameters: UsersByUserIdActivitiesGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserActivity>> {
     const response = await this.usersByUserIdActivitiesGetRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -207,7 +207,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdActivitiesPutRaw(
     requestParameters: UsersByUserIdActivitiesPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserActivity>>> {
     if (
       requestParameters.byUserId === null ||
@@ -215,7 +215,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdActivitiesPut."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdActivitiesPut.",
       );
     }
 
@@ -225,7 +225,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userActivity",
-        "Required parameter requestParameters.userActivity was null or undefined when calling usersByUserIdActivitiesPut."
+        "Required parameter requestParameters.userActivity was null or undefined when calling usersByUserIdActivitiesPut.",
       );
     }
 
@@ -239,18 +239,18 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/activities`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "PUT",
         headers: headerParameters,
         query: queryParameters,
         body: requestParameters.userActivity.map(UserActivityToJSON),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserActivityFromJSON)
+      jsonValue.map(UserActivityFromJSON),
     );
   }
 
@@ -260,11 +260,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdActivitiesPut(
     requestParameters: UsersByUserIdActivitiesPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserActivity>> {
     const response = await this.usersByUserIdActivitiesPutRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -275,7 +275,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdAttributeGetRaw(
     requestParameters: UsersByUserIdAttributeGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<UserAttribute>> {
     if (
       requestParameters.byUserId === null ||
@@ -283,7 +283,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdAttributeGet."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdAttributeGet.",
       );
     }
 
@@ -295,17 +295,17 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/attribute`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UserAttributeFromJSON(jsonValue)
+      UserAttributeFromJSON(jsonValue),
     );
   }
 
@@ -315,11 +315,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdAttributeGet(
     requestParameters: UsersByUserIdAttributeGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<UserAttribute> {
     const response = await this.usersByUserIdAttributeGetRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -330,7 +330,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdAttributePutRaw(
     requestParameters: UsersByUserIdAttributePutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<UserAttribute>> {
     if (
       requestParameters.byUserId === null ||
@@ -338,7 +338,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdAttributePut."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdAttributePut.",
       );
     }
 
@@ -348,7 +348,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userAttribute",
-        "Required parameter requestParameters.userAttribute was null or undefined when calling usersByUserIdAttributePut."
+        "Required parameter requestParameters.userAttribute was null or undefined when calling usersByUserIdAttributePut.",
       );
     }
 
@@ -362,18 +362,18 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/attribute`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "PUT",
         headers: headerParameters,
         query: queryParameters,
         body: UserAttributeToJSON(requestParameters.userAttribute),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UserAttributeFromJSON(jsonValue)
+      UserAttributeFromJSON(jsonValue),
     );
   }
 
@@ -383,11 +383,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdAttributePut(
     requestParameters: UsersByUserIdAttributePutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<UserAttribute> {
     const response = await this.usersByUserIdAttributePutRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -398,7 +398,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsByCareerGroupIdCareersPutRaw(
     requestParameters: UsersByUserIdCareergroupsByCareerGroupIdCareersPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserCareer>>> {
     if (
       requestParameters.byUserId === null ||
@@ -406,7 +406,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPut."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPut.",
       );
     }
 
@@ -416,7 +416,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byCareerGroupId",
-        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPut."
+        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPut.",
       );
     }
 
@@ -426,7 +426,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userCareer",
-        "Required parameter requestParameters.userCareer was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPut."
+        "Required parameter requestParameters.userCareer was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPut.",
       );
     }
 
@@ -441,22 +441,22 @@ export class UsersApi extends runtime.BaseAPI {
         path: `/users/{byUserId}/careergroups/{byCareerGroupId}/careers`
           .replace(
             `{${"byUserId"}}`,
-            encodeURIComponent(String(requestParameters.byUserId))
+            encodeURIComponent(String(requestParameters.byUserId)),
           )
           .replace(
             `{${"byCareerGroupId"}}`,
-            encodeURIComponent(String(requestParameters.byCareerGroupId))
+            encodeURIComponent(String(requestParameters.byCareerGroupId)),
           ),
         method: "PUT",
         headers: headerParameters,
         query: queryParameters,
         body: requestParameters.userCareer.map(UserCareerToJSON),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserCareerFromJSON)
+      jsonValue.map(UserCareerFromJSON),
     );
   }
 
@@ -466,12 +466,12 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsByCareerGroupIdCareersPut(
     requestParameters: UsersByUserIdCareergroupsByCareerGroupIdCareersPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserCareer>> {
     const response =
       await this.usersByUserIdCareergroupsByCareerGroupIdCareersPutRaw(
         requestParameters,
-        initOverrides
+        initOverrides,
       );
     return await response.value();
   }
@@ -482,7 +482,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsByCareerGroupIdDeleteRaw(
     requestParameters: UsersByUserIdCareergroupsByCareerGroupIdDeleteRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
     if (
       requestParameters.byUserId === null ||
@@ -490,7 +490,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdDelete."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdDelete.",
       );
     }
 
@@ -500,7 +500,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byCareerGroupId",
-        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdDelete."
+        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdDelete.",
       );
     }
 
@@ -513,17 +513,17 @@ export class UsersApi extends runtime.BaseAPI {
         path: `/users/{byUserId}/careergroups/{byCareerGroupId}`
           .replace(
             `{${"byUserId"}}`,
-            encodeURIComponent(String(requestParameters.byUserId))
+            encodeURIComponent(String(requestParameters.byUserId)),
           )
           .replace(
             `{${"byCareerGroupId"}}`,
-            encodeURIComponent(String(requestParameters.byCareerGroupId))
+            encodeURIComponent(String(requestParameters.byCareerGroupId)),
           ),
         method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.VoidApiResponse(response);
@@ -535,11 +535,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsByCareerGroupIdDelete(
     requestParameters: UsersByUserIdCareergroupsByCareerGroupIdDeleteRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<void> {
     await this.usersByUserIdCareergroupsByCareerGroupIdDeleteRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
   }
 
@@ -549,7 +549,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsByCareerGroupIdPutRaw(
     requestParameters: UsersByUserIdCareergroupsByCareerGroupIdPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<UserCareerGroupOwn>> {
     if (
       requestParameters.byUserId === null ||
@@ -557,7 +557,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdPut."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdPut.",
       );
     }
 
@@ -567,7 +567,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byCareerGroupId",
-        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdPut."
+        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdPut.",
       );
     }
 
@@ -577,7 +577,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userCareerGroupOwn",
-        "Required parameter requestParameters.userCareerGroupOwn was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdPut."
+        "Required parameter requestParameters.userCareerGroupOwn was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdPut.",
       );
     }
 
@@ -592,22 +592,22 @@ export class UsersApi extends runtime.BaseAPI {
         path: `/users/{byUserId}/careergroups/{byCareerGroupId}`
           .replace(
             `{${"byUserId"}}`,
-            encodeURIComponent(String(requestParameters.byUserId))
+            encodeURIComponent(String(requestParameters.byUserId)),
           )
           .replace(
             `{${"byCareerGroupId"}}`,
-            encodeURIComponent(String(requestParameters.byCareerGroupId))
+            encodeURIComponent(String(requestParameters.byCareerGroupId)),
           ),
         method: "PUT",
         headers: headerParameters,
         query: queryParameters,
         body: UserCareerGroupOwnToJSON(requestParameters.userCareerGroupOwn),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UserCareerGroupOwnFromJSON(jsonValue)
+      UserCareerGroupOwnFromJSON(jsonValue),
     );
   }
 
@@ -617,11 +617,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsByCareerGroupIdPut(
     requestParameters: UsersByUserIdCareergroupsByCareerGroupIdPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<UserCareerGroupOwn> {
     const response = await this.usersByUserIdCareergroupsByCareerGroupIdPutRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -632,7 +632,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsGetRaw(
     requestParameters: UsersByUserIdCareergroupsGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserCareerGroup>>> {
     if (
       requestParameters.byUserId === null ||
@@ -640,7 +640,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsGet."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsGet.",
       );
     }
 
@@ -652,17 +652,17 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/careergroups`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserCareerGroupFromJSON)
+      jsonValue.map(UserCareerGroupFromJSON),
     );
   }
 
@@ -672,11 +672,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsGet(
     requestParameters: UsersByUserIdCareergroupsGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserCareerGroup>> {
     const response = await this.usersByUserIdCareergroupsGetRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -687,7 +687,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsPostRaw(
     requestParameters: UsersByUserIdCareergroupsPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<UserCareerGroup>> {
     if (
       requestParameters.byUserId === null ||
@@ -695,7 +695,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsPost."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsPost.",
       );
     }
 
@@ -705,7 +705,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userCareerGroup",
-        "Required parameter requestParameters.userCareerGroup was null or undefined when calling usersByUserIdCareergroupsPost."
+        "Required parameter requestParameters.userCareerGroup was null or undefined when calling usersByUserIdCareergroupsPost.",
       );
     }
 
@@ -719,18 +719,18 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/careergroups`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "POST",
         headers: headerParameters,
         query: queryParameters,
         body: UserCareerGroupToJSON(requestParameters.userCareerGroup),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UserCareerGroupFromJSON(jsonValue)
+      UserCareerGroupFromJSON(jsonValue),
     );
   }
 
@@ -740,11 +740,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdCareergroupsPost(
     requestParameters: UsersByUserIdCareergroupsPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<UserCareerGroup> {
     const response = await this.usersByUserIdCareergroupsPostRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -755,7 +755,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdDeleteRaw(
     requestParameters: UsersByUserIdDeleteRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
     if (
       requestParameters.byUserId === null ||
@@ -763,7 +763,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdDelete."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdDelete.",
       );
     }
 
@@ -775,13 +775,13 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.VoidApiResponse(response);
@@ -793,7 +793,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdDelete(
     requestParameters: UsersByUserIdDeleteRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<void> {
     await this.usersByUserIdDeleteRaw(requestParameters, initOverrides);
   }
@@ -804,7 +804,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesByNoteIdDeleteRaw(
     requestParameters: UsersByUserIdNotesByNoteIdDeleteRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
     if (
       requestParameters.byUserId === null ||
@@ -812,7 +812,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesByNoteIdDelete."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesByNoteIdDelete.",
       );
     }
 
@@ -822,7 +822,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byNoteId",
-        "Required parameter requestParameters.byNoteId was null or undefined when calling usersByUserIdNotesByNoteIdDelete."
+        "Required parameter requestParameters.byNoteId was null or undefined when calling usersByUserIdNotesByNoteIdDelete.",
       );
     }
 
@@ -835,17 +835,17 @@ export class UsersApi extends runtime.BaseAPI {
         path: `/users/{byUserId}/notes/{byNoteId}`
           .replace(
             `{${"byUserId"}}`,
-            encodeURIComponent(String(requestParameters.byUserId))
+            encodeURIComponent(String(requestParameters.byUserId)),
           )
           .replace(
             `{${"byNoteId"}}`,
-            encodeURIComponent(String(requestParameters.byNoteId))
+            encodeURIComponent(String(requestParameters.byNoteId)),
           ),
         method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.VoidApiResponse(response);
@@ -857,11 +857,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesByNoteIdDelete(
     requestParameters: UsersByUserIdNotesByNoteIdDeleteRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<void> {
     await this.usersByUserIdNotesByNoteIdDeleteRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
   }
 
@@ -871,7 +871,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesByNoteIdItemsPutRaw(
     requestParameters: UsersByUserIdNotesByNoteIdItemsPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserNoteItem>>> {
     if (
       requestParameters.byUserId === null ||
@@ -879,7 +879,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesByNoteIdItemsPut."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesByNoteIdItemsPut.",
       );
     }
 
@@ -889,7 +889,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byNoteId",
-        "Required parameter requestParameters.byNoteId was null or undefined when calling usersByUserIdNotesByNoteIdItemsPut."
+        "Required parameter requestParameters.byNoteId was null or undefined when calling usersByUserIdNotesByNoteIdItemsPut.",
       );
     }
 
@@ -899,7 +899,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userNoteItem",
-        "Required parameter requestParameters.userNoteItem was null or undefined when calling usersByUserIdNotesByNoteIdItemsPut."
+        "Required parameter requestParameters.userNoteItem was null or undefined when calling usersByUserIdNotesByNoteIdItemsPut.",
       );
     }
 
@@ -914,22 +914,22 @@ export class UsersApi extends runtime.BaseAPI {
         path: `/users/{byUserId}/notes/{byNoteId}/items`
           .replace(
             `{${"byUserId"}}`,
-            encodeURIComponent(String(requestParameters.byUserId))
+            encodeURIComponent(String(requestParameters.byUserId)),
           )
           .replace(
             `{${"byNoteId"}}`,
-            encodeURIComponent(String(requestParameters.byNoteId))
+            encodeURIComponent(String(requestParameters.byNoteId)),
           ),
         method: "PUT",
         headers: headerParameters,
         query: queryParameters,
         body: requestParameters.userNoteItem.map(UserNoteItemToJSON),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserNoteItemFromJSON)
+      jsonValue.map(UserNoteItemFromJSON),
     );
   }
 
@@ -939,11 +939,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesByNoteIdItemsPut(
     requestParameters: UsersByUserIdNotesByNoteIdItemsPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserNoteItem>> {
     const response = await this.usersByUserIdNotesByNoteIdItemsPutRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -954,7 +954,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesByNoteIdPutRaw(
     requestParameters: UsersByUserIdNotesByNoteIdPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<UserNoteOwn>> {
     if (
       requestParameters.byUserId === null ||
@@ -962,7 +962,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesByNoteIdPut."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesByNoteIdPut.",
       );
     }
 
@@ -972,7 +972,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byNoteId",
-        "Required parameter requestParameters.byNoteId was null or undefined when calling usersByUserIdNotesByNoteIdPut."
+        "Required parameter requestParameters.byNoteId was null or undefined when calling usersByUserIdNotesByNoteIdPut.",
       );
     }
 
@@ -982,7 +982,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userNoteOwn",
-        "Required parameter requestParameters.userNoteOwn was null or undefined when calling usersByUserIdNotesByNoteIdPut."
+        "Required parameter requestParameters.userNoteOwn was null or undefined when calling usersByUserIdNotesByNoteIdPut.",
       );
     }
 
@@ -997,22 +997,22 @@ export class UsersApi extends runtime.BaseAPI {
         path: `/users/{byUserId}/notes/{byNoteId}`
           .replace(
             `{${"byUserId"}}`,
-            encodeURIComponent(String(requestParameters.byUserId))
+            encodeURIComponent(String(requestParameters.byUserId)),
           )
           .replace(
             `{${"byNoteId"}}`,
-            encodeURIComponent(String(requestParameters.byNoteId))
+            encodeURIComponent(String(requestParameters.byNoteId)),
           ),
         method: "PUT",
         headers: headerParameters,
         query: queryParameters,
         body: UserNoteOwnToJSON(requestParameters.userNoteOwn),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UserNoteOwnFromJSON(jsonValue)
+      UserNoteOwnFromJSON(jsonValue),
     );
   }
 
@@ -1022,11 +1022,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesByNoteIdPut(
     requestParameters: UsersByUserIdNotesByNoteIdPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<UserNoteOwn> {
     const response = await this.usersByUserIdNotesByNoteIdPutRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -1037,7 +1037,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesGetRaw(
     requestParameters: UsersByUserIdNotesGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserNote>>> {
     if (
       requestParameters.byUserId === null ||
@@ -1045,7 +1045,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesGet."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesGet.",
       );
     }
 
@@ -1057,17 +1057,17 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/notes`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserNoteFromJSON)
+      jsonValue.map(UserNoteFromJSON),
     );
   }
 
@@ -1077,11 +1077,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesGet(
     requestParameters: UsersByUserIdNotesGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserNote>> {
     const response = await this.usersByUserIdNotesGetRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -1092,7 +1092,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesPostRaw(
     requestParameters: UsersByUserIdNotesPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<UserNote>> {
     if (
       requestParameters.byUserId === null ||
@@ -1100,7 +1100,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesPost."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdNotesPost.",
       );
     }
 
@@ -1110,7 +1110,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userNote",
-        "Required parameter requestParameters.userNote was null or undefined when calling usersByUserIdNotesPost."
+        "Required parameter requestParameters.userNote was null or undefined when calling usersByUserIdNotesPost.",
       );
     }
 
@@ -1124,18 +1124,18 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/notes`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "POST",
         headers: headerParameters,
         query: queryParameters,
         body: UserNoteToJSON(requestParameters.userNote),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UserNoteFromJSON(jsonValue)
+      UserNoteFromJSON(jsonValue),
     );
   }
 
@@ -1145,11 +1145,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdNotesPost(
     requestParameters: UsersByUserIdNotesPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<UserNote> {
     const response = await this.usersByUserIdNotesPostRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -1160,7 +1160,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdQualificationsGetRaw(
     requestParameters: UsersByUserIdQualificationsGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserQualification>>> {
     if (
       requestParameters.byUserId === null ||
@@ -1168,7 +1168,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdQualificationsGet."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdQualificationsGet.",
       );
     }
 
@@ -1180,17 +1180,17 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/qualifications`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserQualificationFromJSON)
+      jsonValue.map(UserQualificationFromJSON),
     );
   }
 
@@ -1200,11 +1200,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdQualificationsGet(
     requestParameters: UsersByUserIdQualificationsGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserQualification>> {
     const response = await this.usersByUserIdQualificationsGetRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -1215,7 +1215,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdQualificationsPutRaw(
     requestParameters: UsersByUserIdQualificationsPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserQualification>>> {
     if (
       requestParameters.byUserId === null ||
@@ -1223,7 +1223,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdQualificationsPut."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdQualificationsPut.",
       );
     }
 
@@ -1233,7 +1233,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userQualification",
-        "Required parameter requestParameters.userQualification was null or undefined when calling usersByUserIdQualificationsPut."
+        "Required parameter requestParameters.userQualification was null or undefined when calling usersByUserIdQualificationsPut.",
       );
     }
 
@@ -1247,18 +1247,18 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/qualifications`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "PUT",
         headers: headerParameters,
         query: queryParameters,
         body: requestParameters.userQualification.map(UserQualificationToJSON),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserQualificationFromJSON)
+      jsonValue.map(UserQualificationFromJSON),
     );
   }
 
@@ -1268,11 +1268,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdQualificationsPut(
     requestParameters: UsersByUserIdQualificationsPutRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserQualification>> {
     const response = await this.usersByUserIdQualificationsPutRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -1283,7 +1283,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdSkillsGetRaw(
     requestParameters: UsersByUserIdSkillsGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserSkillTag>>> {
     if (
       requestParameters.byUserId === null ||
@@ -1291,7 +1291,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "byUserId",
-        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdSkillsGet."
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdSkillsGet.",
       );
     }
 
@@ -1303,17 +1303,17 @@ export class UsersApi extends runtime.BaseAPI {
       {
         path: `/users/{byUserId}/skills`.replace(
           `{${"byUserId"}}`,
-          encodeURIComponent(String(requestParameters.byUserId))
+          encodeURIComponent(String(requestParameters.byUserId)),
         ),
         method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserSkillTagFromJSON)
+      jsonValue.map(UserSkillTagFromJSON),
     );
   }
 
@@ -1323,11 +1323,11 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersByUserIdSkillsGet(
     requestParameters: UsersByUserIdSkillsGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserSkillTag>> {
     const response = await this.usersByUserIdSkillsGetRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -1337,7 +1337,7 @@ export class UsersApi extends runtime.BaseAPI {
    * ユーザー一覧取得
    */
   async usersGetRaw(
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<UserAttribute>>> {
     const queryParameters: any = {};
 
@@ -1350,11 +1350,11 @@ export class UsersApi extends runtime.BaseAPI {
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(UserAttributeFromJSON)
+      jsonValue.map(UserAttributeFromJSON),
     );
   }
 
@@ -1363,7 +1363,7 @@ export class UsersApi extends runtime.BaseAPI {
    * ユーザー一覧取得
    */
   async usersGet(
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<UserAttribute>> {
     const response = await this.usersGetRaw(initOverrides);
     return await response.value();
@@ -1375,7 +1375,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersPostRaw(
     requestParameters: UsersPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<UserAttribute>> {
     if (
       requestParameters.userAttribute === null ||
@@ -1383,7 +1383,7 @@ export class UsersApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "userAttribute",
-        "Required parameter requestParameters.userAttribute was null or undefined when calling usersPost."
+        "Required parameter requestParameters.userAttribute was null or undefined when calling usersPost.",
       );
     }
 
@@ -1401,11 +1401,11 @@ export class UsersApi extends runtime.BaseAPI {
         query: queryParameters,
         body: UserAttributeToJSON(requestParameters.userAttribute),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UserAttributeFromJSON(jsonValue)
+      UserAttributeFromJSON(jsonValue),
     );
   }
 
@@ -1415,7 +1415,7 @@ export class UsersApi extends runtime.BaseAPI {
    */
   async usersPost(
     requestParameters: UsersPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<UserAttribute> {
     const response = await this.usersPostRaw(requestParameters, initOverrides);
     return await response.value();

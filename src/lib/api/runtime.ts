@@ -100,7 +100,7 @@ export const DefaultConfig = new Configuration();
 export class BaseAPI {
   private static readonly jsonRegex = new RegExp(
     "^(:?application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(:?;.*)?$",
-    "i"
+    "i",
   );
   private middleware: Middleware[];
 
@@ -149,7 +149,7 @@ export class BaseAPI {
 
   protected async request(
     context: RequestOpts,
-    initOverrides?: RequestInit | InitOverrideFunction
+    initOverrides?: RequestInit | InitOverrideFunction,
   ): Promise<Response> {
     const { url, init } = await this.createFetchParams(context, initOverrides);
     const response = await this.fetchApi(url, init);
@@ -161,7 +161,7 @@ export class BaseAPI {
 
   private async createFetchParams(
     context: RequestOpts,
-    initOverrides?: RequestInit | InitOverrideFunction
+    initOverrides?: RequestInit | InitOverrideFunction,
   ) {
     let url = this.configuration.basePath + context.path;
     if (
@@ -177,10 +177,10 @@ export class BaseAPI {
     const headers = Object.assign(
       {},
       this.configuration.headers,
-      context.headers
+      context.headers,
     );
     Object.keys(headers).forEach((key) =>
-      headers[key] === undefined ? delete headers[key] : {}
+      headers[key] === undefined ? delete headers[key] : {},
     );
 
     const initOverrideFn =
@@ -203,14 +203,22 @@ export class BaseAPI {
       })),
     };
 
+    let body: any;
+    if (
+      isFormData(overriddenInit.body) ||
+      overriddenInit.body instanceof URLSearchParams ||
+      isBlob(overriddenInit.body)
+    ) {
+      body = overriddenInit.body;
+    } else if (this.isJsonMime(headers["Content-Type"])) {
+      body = JSON.stringify(overriddenInit.body);
+    } else {
+      body = overriddenInit.body;
+    }
+
     const init: RequestInit = {
       ...overriddenInit,
-      body:
-        isFormData(overriddenInit.body) ||
-        overriddenInit.body instanceof URLSearchParams ||
-        isBlob(overriddenInit.body)
-          ? overriddenInit.body
-          : JSON.stringify(overriddenInit.body),
+      body,
     };
 
     return { url, init };
@@ -231,7 +239,7 @@ export class BaseAPI {
     try {
       response = await (this.configuration.fetchApi || fetch)(
         fetchParams.url,
-        fetchParams.init
+        fetchParams.init,
       );
     } catch (e) {
       for (const middleware of this.middleware) {
@@ -250,7 +258,7 @@ export class BaseAPI {
         if (e instanceof Error) {
           throw new FetchError(
             e,
-            "The request failed and the interceptors did not return an alternative response"
+            "The request failed and the interceptors did not return an alternative response",
           );
         } else {
           throw e;
@@ -293,21 +301,30 @@ function isFormData(value: any): value is FormData {
 
 export class ResponseError extends Error {
   override name: "ResponseError" = "ResponseError";
-  constructor(public response: Response, msg?: string) {
+  constructor(
+    public response: Response,
+    msg?: string,
+  ) {
     super(msg);
   }
 }
 
 export class FetchError extends Error {
   override name: "FetchError" = "FetchError";
-  constructor(public cause: Error, msg?: string) {
+  constructor(
+    public cause: Error,
+    msg?: string,
+  ) {
     super(msg);
   }
 }
 
 export class RequiredError extends Error {
   override name: "RequiredError" = "RequiredError";
-  constructor(public field: string, msg?: string) {
+  constructor(
+    public field: string,
+    msg?: string,
+  ) {
     super(msg);
   }
 }
@@ -395,7 +412,7 @@ function querystringSingleKey(
     | Array<string | number | null | boolean>
     | Set<string | number | null | boolean>
     | HTTPQuery,
-  keyPrefix: string = ""
+  keyPrefix: string = "",
 ): string {
   const fullKey = keyPrefix + (keyPrefix.length ? `[${key}]` : key);
   if (value instanceof Array) {
@@ -409,9 +426,7 @@ function querystringSingleKey(
     return querystringSingleKey(key, valueAsArray, keyPrefix);
   }
   if (value instanceof Date) {
-    return `${encodeURIComponent(fullKey)}=${encodeURIComponent(
-      value.toISOString()
-    )}`;
+    return `${encodeURIComponent(fullKey)}=${encodeURIComponent(value.toISOString())}`;
   }
   if (value instanceof Object) {
     return querystring(value as HTTPQuery, fullKey);
@@ -422,7 +437,7 @@ function querystringSingleKey(
 export function mapValues(data: any, fn: (item: any) => any) {
   return Object.keys(data).reduce(
     (acc, key) => ({ ...acc, [key]: fn(data[key]) }),
-    {}
+    {},
   );
 }
 
@@ -478,7 +493,7 @@ export interface ResponseTransformer<T> {
 export class JSONApiResponse<T> {
   constructor(
     public raw: Response,
-    private transformer: ResponseTransformer<T> = (jsonValue: any) => jsonValue
+    private transformer: ResponseTransformer<T> = (jsonValue: any) => jsonValue,
   ) {}
 
   async value(): Promise<T> {

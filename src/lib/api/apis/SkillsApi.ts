@@ -13,7 +13,11 @@
  */
 
 import * as runtime from "../runtime";
-import type { Skill, SkillTag, SkilltagsPost400Response } from "../models";
+import type {
+  Skill,
+  SkillTag,
+  SkilltagsPost400Response,
+} from "../models/index";
 import {
   SkillFromJSON,
   SkillToJSON,
@@ -21,7 +25,7 @@ import {
   SkillTagToJSON,
   SkilltagsPost400ResponseFromJSON,
   SkilltagsPost400ResponseToJSON,
-} from "../models";
+} from "../models/index";
 
 export interface SkillrecordsPostRequest {
   skill: Array<Skill>;
@@ -49,7 +53,7 @@ export class SkillsApi extends runtime.BaseAPI {
    */
   async skillrecordsPostRaw(
     requestParameters: SkillrecordsPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<Skill>>> {
     if (
       requestParameters.skill === null ||
@@ -57,7 +61,7 @@ export class SkillsApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "skill",
-        "Required parameter requestParameters.skill was null or undefined when calling skillrecordsPost."
+        "Required parameter requestParameters.skill was null or undefined when calling skillrecordsPost.",
       );
     }
 
@@ -75,11 +79,11 @@ export class SkillsApi extends runtime.BaseAPI {
         query: queryParameters,
         body: requestParameters.skill.map(SkillToJSON),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(SkillFromJSON)
+      jsonValue.map(SkillFromJSON),
     );
   }
 
@@ -89,11 +93,11 @@ export class SkillsApi extends runtime.BaseAPI {
    */
   async skillrecordsPost(
     requestParameters: SkillrecordsPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<Skill>> {
     const response = await this.skillrecordsPostRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -104,7 +108,7 @@ export class SkillsApi extends runtime.BaseAPI {
    */
   async skillsBySkillIdGetRaw(
     requestParameters: SkillsBySkillIdGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Skill>> {
     if (
       requestParameters.bySkillId === null ||
@@ -112,7 +116,7 @@ export class SkillsApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "bySkillId",
-        "Required parameter requestParameters.bySkillId was null or undefined when calling skillsBySkillIdGet."
+        "Required parameter requestParameters.bySkillId was null or undefined when calling skillsBySkillIdGet.",
       );
     }
 
@@ -124,17 +128,17 @@ export class SkillsApi extends runtime.BaseAPI {
       {
         path: `/skills/{bySkillId}`.replace(
           `{${"bySkillId"}}`,
-          encodeURIComponent(String(requestParameters.bySkillId))
+          encodeURIComponent(String(requestParameters.bySkillId)),
         ),
         method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      SkillFromJSON(jsonValue)
+      SkillFromJSON(jsonValue),
     );
   }
 
@@ -144,11 +148,11 @@ export class SkillsApi extends runtime.BaseAPI {
    */
   async skillsBySkillIdGet(
     requestParameters: SkillsBySkillIdGetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Skill> {
     const response = await this.skillsBySkillIdGetRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
@@ -158,7 +162,7 @@ export class SkillsApi extends runtime.BaseAPI {
    * 全スキル取得
    */
   async skillsGetRaw(
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<Skill>>> {
     const queryParameters: any = {};
 
@@ -171,11 +175,11 @@ export class SkillsApi extends runtime.BaseAPI {
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(SkillFromJSON)
+      jsonValue.map(SkillFromJSON),
     );
   }
 
@@ -184,7 +188,7 @@ export class SkillsApi extends runtime.BaseAPI {
    * 全スキル取得
    */
   async skillsGet(
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<Skill>> {
     const response = await this.skillsGetRaw(initOverrides);
     return await response.value();
@@ -196,7 +200,7 @@ export class SkillsApi extends runtime.BaseAPI {
    */
   async skillsPostRaw(
     requestParameters: SkillsPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Skill>> {
     if (
       requestParameters.skill === null ||
@@ -204,7 +208,7 @@ export class SkillsApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "skill",
-        "Required parameter requestParameters.skill was null or undefined when calling skillsPost."
+        "Required parameter requestParameters.skill was null or undefined when calling skillsPost.",
       );
     }
 
@@ -222,11 +226,11 @@ export class SkillsApi extends runtime.BaseAPI {
         query: queryParameters,
         body: SkillToJSON(requestParameters.skill),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      SkillFromJSON(jsonValue)
+      SkillFromJSON(jsonValue),
     );
   }
 
@@ -236,7 +240,7 @@ export class SkillsApi extends runtime.BaseAPI {
    */
   async skillsPost(
     requestParameters: SkillsPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Skill> {
     const response = await this.skillsPostRaw(requestParameters, initOverrides);
     return await response.value();
@@ -247,7 +251,7 @@ export class SkillsApi extends runtime.BaseAPI {
    * 全スキルタグ取得
    */
   async skilltagsGetRaw(
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<SkillTag>>> {
     const queryParameters: any = {};
 
@@ -260,11 +264,11 @@ export class SkillsApi extends runtime.BaseAPI {
         headers: headerParameters,
         query: queryParameters,
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(SkillTagFromJSON)
+      jsonValue.map(SkillTagFromJSON),
     );
   }
 
@@ -273,7 +277,7 @@ export class SkillsApi extends runtime.BaseAPI {
    * 全スキルタグ取得
    */
   async skilltagsGet(
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<SkillTag>> {
     const response = await this.skilltagsGetRaw(initOverrides);
     return await response.value();
@@ -285,7 +289,7 @@ export class SkillsApi extends runtime.BaseAPI {
    */
   async skilltagsPostRaw(
     requestParameters: SkilltagsPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<SkillTag>> {
     if (
       requestParameters.skillTag === null ||
@@ -293,7 +297,7 @@ export class SkillsApi extends runtime.BaseAPI {
     ) {
       throw new runtime.RequiredError(
         "skillTag",
-        "Required parameter requestParameters.skillTag was null or undefined when calling skilltagsPost."
+        "Required parameter requestParameters.skillTag was null or undefined when calling skilltagsPost.",
       );
     }
 
@@ -311,11 +315,11 @@ export class SkillsApi extends runtime.BaseAPI {
         query: queryParameters,
         body: SkillTagToJSON(requestParameters.skillTag),
       },
-      initOverrides
+      initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      SkillTagFromJSON(jsonValue)
+      SkillTagFromJSON(jsonValue),
     );
   }
 
@@ -325,11 +329,11 @@ export class SkillsApi extends runtime.BaseAPI {
    */
   async skilltagsPost(
     requestParameters: SkilltagsPostRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<SkillTag> {
     const response = await this.skilltagsPostRaw(
       requestParameters,
-      initOverrides
+      initOverrides,
     );
     return await response.value();
   }
