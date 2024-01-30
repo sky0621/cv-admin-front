@@ -13,18 +13,12 @@
  */
 
 import * as runtime from "../runtime";
-import type {
-  Skill,
-  SkillTag,
-  SkilltagsPost400Response,
-} from "../models/index";
+import type { Skill, SkillTag } from "../models/index";
 import {
   SkillFromJSON,
-  SkillToJSON,
   SkillTagFromJSON,
   SkillTagToJSON,
-  SkilltagsPost400ResponseFromJSON,
-  SkilltagsPost400ResponseToJSON,
+  SkillToJSON,
 } from "../models/index";
 
 export interface SkillrecordsPostRequest {
