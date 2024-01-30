@@ -17,7 +17,8 @@ const AppLayout = ({ title, children }: Props) => {
         data-id="HEADER"
         style={{
           fontSize: "2rem",
-          minWidth: "330px",
+          minWidth: "290px",
+          paddingLeft: 18,
         }}
       >
         {title}
@@ -29,7 +30,7 @@ const AppLayout = ({ title, children }: Props) => {
           padding: "18px",
           backgroundColor: "#fff",
           borderRadius: 16,
-          minWidth: "330px",
+          minWidth: "290px",
         }}
       >
         {children}

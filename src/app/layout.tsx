@@ -5,7 +5,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import { ReactNode } from "react";
 import { magenta } from "@ant-design/colors";
-import AppLayout from "@/app/dashboard/_components/AppLayout/AppLayout";
+import { AppLayout } from "@/app/_components/AppLayout";
 
 const NotoSansJP = Noto_Sans_JP({
   weight: ["400", "500"],

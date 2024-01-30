@@ -1,17 +1,11 @@
-"use client";
-
-import { Button } from "antd";
 import Title from "antd/es/typography/Title";
+import { UserList } from "@/app/dashboard/_components/UserList";
 
 const DashboardPage = () => {
-  const click = async () => {
-    alert("click");
-  };
-
   return (
     <>
       <Title level={2}>Dashboard</Title>
-      <Button onClick={click}>push</Button>
+      <UserList />
     </>
   );
 };
