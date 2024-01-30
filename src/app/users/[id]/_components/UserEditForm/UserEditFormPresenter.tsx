@@ -1,5 +1,12 @@
-const UserEditFormContainer = () => {
+"use client";
+
+const UserEditFormPresenter = () => {
   //
+  return (
+    <>
+      <div>form</div>
+    </>
+  );
 };
 
-export default UserEditFormContainer;
+export default UserEditFormPresenter;

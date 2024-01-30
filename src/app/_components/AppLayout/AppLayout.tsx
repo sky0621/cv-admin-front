@@ -2,6 +2,7 @@
 
 import { Layout } from "antd";
 import { ReactNode } from "react";
+import Link from "next/link";
 
 const { Header, Content } = Layout;
 
@@ -21,7 +22,9 @@ const AppLayout = ({ title, children }: Props) => {
           paddingLeft: 18,
         }}
       >
-        {title}
+        <Link href="/dashboard">
+          <span style={{ color: "#fff" }}>{title}</span>
+        </Link>
       </Header>
       <Content
         data-id="CONTENT"

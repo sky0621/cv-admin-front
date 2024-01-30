@@ -4,6 +4,7 @@ import { UserAttribute } from "@/lib/api";
 import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
+import { useUserList } from "@/app/dashboard/_components/UserList/useUserList";
 
 type ColumnType = Omit<UserAttribute, "avatarUrl" | "pr">;
 
@@ -32,10 +33,11 @@ type Props = {
 };
 
 const UserListPresenter = ({ users }: Props) => {
+  const { userAttributeWithKeys } = useUserList(users);
   return (
     <>
       <Title level={3}>UserList</Title>
-      <Table dataSource={users} columns={columns} />
+      <Table dataSource={userAttributeWithKeys} columns={columns} />
     </>
   );
 };
