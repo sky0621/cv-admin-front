@@ -13,12 +13,18 @@
  */
 
 import * as runtime from "../runtime";
-import type { Skill, SkillTag } from "../models/index";
+import type {
+  Skill,
+  SkillTag,
+  SkilltagsPost400Response,
+} from "../models/index";
 import {
   SkillFromJSON,
+  SkillToJSON,
   SkillTagFromJSON,
   SkillTagToJSON,
-  SkillToJSON,
+  SkilltagsPost400ResponseFromJSON,
+  SkilltagsPost400ResponseToJSON,
 } from "../models/index";
 
 export interface SkillrecordsPostRequest {
@@ -29,8 +35,17 @@ export interface SkillsBySkillIdGetRequest {
   bySkillId: number;
 }
 
+export interface SkillsGetRequest {
+  tag?: number;
+}
+
 export interface SkillsPostRequest {
   skill: Skill;
+  tag?: number;
+}
+
+export interface SkilltagsBySkillTagIdGetRequest {
+  bySkillTagId: number;
 }
 
 export interface SkilltagsPostRequest {
@@ -98,7 +113,7 @@ export class SkillsApi extends runtime.BaseAPI {
 
   /**
    * 指定スキルを取得する。
-   * 【未実装】指定スキル取得
+   * 指定スキル取得
    */
   async skillsBySkillIdGetRaw(
     requestParameters: SkillsBySkillIdGetRequest,
@@ -138,7 +153,7 @@ export class SkillsApi extends runtime.BaseAPI {
 
   /**
    * 指定スキルを取得する。
-   * 【未実装】指定スキル取得
+   * 指定スキル取得
    */
   async skillsBySkillIdGet(
     requestParameters: SkillsBySkillIdGetRequest,
@@ -152,13 +167,18 @@ export class SkillsApi extends runtime.BaseAPI {
   }
 
   /**
-   * 全スキルを取得する。
-   * 全スキル取得
+   * 全スキルを取得する。パラメータ(tag)が指定された場合は該当するタグを持つスキルを取得する。
+   * スキル群取得
    */
   async skillsGetRaw(
+    requestParameters: SkillsGetRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<Skill>>> {
     const queryParameters: any = {};
+
+    if (requestParameters.tag !== undefined) {
+      queryParameters["tag"] = requestParameters.tag;
+    }
 
     const headerParameters: runtime.HTTPHeaders = {};
 
@@ -178,13 +198,14 @@ export class SkillsApi extends runtime.BaseAPI {
   }
 
   /**
-   * 全スキルを取得する。
-   * 全スキル取得
+   * 全スキルを取得する。パラメータ(tag)が指定された場合は該当するタグを持つスキルを取得する。
+   * スキル群取得
    */
   async skillsGet(
+    requestParameters: SkillsGetRequest = {},
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Array<Skill>> {
-    const response = await this.skillsGetRaw(initOverrides);
+    const response = await this.skillsGetRaw(requestParameters, initOverrides);
     return await response.value();
   }
 
@@ -207,6 +228,10 @@ export class SkillsApi extends runtime.BaseAPI {
     }
 
     const queryParameters: any = {};
+
+    if (requestParameters.tag !== undefined) {
+      queryParameters["tag"] = requestParameters.tag;
+    }
 
     const headerParameters: runtime.HTTPHeaders = {};
 
@@ -237,6 +262,61 @@ export class SkillsApi extends runtime.BaseAPI {
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<Skill> {
     const response = await this.skillsPostRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
+
+  /**
+   * 指定スキルタグを取得する。
+   * 指定スキルタグ取得
+   */
+  async skilltagsBySkillTagIdGetRaw(
+    requestParameters: SkilltagsBySkillTagIdGetRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<SkillTag>> {
+    if (
+      requestParameters.bySkillTagId === null ||
+      requestParameters.bySkillTagId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "bySkillTagId",
+        "Required parameter requestParameters.bySkillTagId was null or undefined when calling skilltagsBySkillTagIdGet.",
+      );
+    }
+
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    const response = await this.request(
+      {
+        path: `/skilltags/{bySkillTagId}`.replace(
+          `{${"bySkillTagId"}}`,
+          encodeURIComponent(String(requestParameters.bySkillTagId)),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      SkillTagFromJSON(jsonValue),
+    );
+  }
+
+  /**
+   * 指定スキルタグを取得する。
+   * 指定スキルタグ取得
+   */
+  async skilltagsBySkillTagIdGet(
+    requestParameters: SkilltagsBySkillTagIdGetRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<SkillTag> {
+    const response = await this.skilltagsBySkillTagIdGetRaw(
+      requestParameters,
+      initOverrides,
+    );
     return await response.value();
   }
 

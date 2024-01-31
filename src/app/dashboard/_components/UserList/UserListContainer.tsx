@@ -3,7 +3,7 @@ import { UsersApi } from "@/lib/api";
 
 const UserListContainer = async () => {
   const users = await new UsersApi().usersGet();
-  console.table(users);
+
   return <UserListPresenter users={users} />;
 };
 

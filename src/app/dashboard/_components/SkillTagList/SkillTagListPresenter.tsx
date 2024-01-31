@@ -25,7 +25,6 @@ type Props = {
 };
 
 const SkillTagListPresenter = ({ skillTags }: Props) => {
-  //  const { skillWithKeys } = useSkillList(skills);
   return (
     <>
       <Title level={3}>SkillTagList</Title>
