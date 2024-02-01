@@ -4,7 +4,6 @@ import { Skill } from "@/lib/api";
 import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
-import { useSkillList } from "@/app/skilltags/[id]/_components/SkillList/useSkillList";
 
 type ColumnType = Omit<Skill, "url">;
 
@@ -24,7 +23,6 @@ type Props = {
 };
 
 const SkillListPresenter = ({ skills }: Props) => {
-  const { userAttributeWithKeys } = useSkillList(skills);
   return (
     <>
       <Title level={3}>SkillList</Title>
