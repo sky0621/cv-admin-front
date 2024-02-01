@@ -33,11 +33,11 @@ export interface UserSkillTag {
    */
   tagName?: string;
   /**
-   * スキルタグキー
+   * スキルタグコード
    * @type {string}
    * @memberof UserSkillTag
    */
-  tagKey?: string;
+  tagCode?: string;
   /**
    *
    * @type {Array<UserSkill>}
@@ -68,7 +68,7 @@ export function UserSkillTagFromJSONTyped(
   }
   return {
     tagName: !exists(json, "tagName") ? undefined : json["tagName"],
-    tagKey: !exists(json, "tagKey") ? undefined : json["tagKey"],
+    tagCode: !exists(json, "tagCode") ? undefined : json["tagCode"],
     skills: !exists(json, "skills")
       ? undefined
       : (json["skills"] as Array<any>).map(UserSkillFromJSON),
@@ -84,7 +84,7 @@ export function UserSkillTagToJSON(value?: UserSkillTag | null): any {
   }
   return {
     tagName: value.tagName,
-    tagKey: value.tagKey,
+    tagCode: value.tagCode,
     skills:
       value.skills === undefined
         ? undefined

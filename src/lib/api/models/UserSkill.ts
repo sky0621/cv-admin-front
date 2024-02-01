@@ -33,11 +33,11 @@ export interface UserSkill {
    */
   name?: string;
   /**
-   * スキルキー
+   * スキルコード
    * @type {string}
    * @memberof UserSkill
    */
-  key?: string;
+  code?: string;
   /**
    * URL
    * @type {string}
@@ -74,7 +74,7 @@ export function UserSkillFromJSONTyped(
   }
   return {
     name: !exists(json, "name") ? undefined : json["name"],
-    key: !exists(json, "key") ? undefined : json["key"],
+    code: !exists(json, "code") ? undefined : json["code"],
     url: !exists(json, "url") ? undefined : json["url"],
     versions: !exists(json, "versions")
       ? undefined
@@ -91,7 +91,7 @@ export function UserSkillToJSON(value?: UserSkill | null): any {
   }
   return {
     name: value.name,
-    key: value.key,
+    code: value.code,
     url: value.url,
     versions:
       value.versions === undefined

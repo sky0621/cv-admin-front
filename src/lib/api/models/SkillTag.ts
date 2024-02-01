@@ -32,11 +32,11 @@ export interface SkillTag {
    */
   name?: string;
   /**
-   * スキルタグキー
+   * スキルタグコード
    * @type {string}
    * @memberof SkillTag
    */
-  key?: string;
+  code?: string;
 }
 
 /**
@@ -62,7 +62,7 @@ export function SkillTagFromJSONTyped(
   return {
     id: !exists(json, "id") ? undefined : json["id"],
     name: !exists(json, "name") ? undefined : json["name"],
-    key: !exists(json, "key") ? undefined : json["key"],
+    code: !exists(json, "code") ? undefined : json["code"],
   };
 }
 
@@ -76,6 +76,6 @@ export function SkillTagToJSON(value?: SkillTag | null): any {
   return {
     id: value.id,
     name: value.name,
-    key: value.key,
+    code: value.code,
   };
 }
