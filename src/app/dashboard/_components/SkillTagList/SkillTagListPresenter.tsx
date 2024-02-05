@@ -4,6 +4,7 @@ import { SkillTag } from "@/lib/api";
 import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
+import { useSkillTagList } from "@/app/dashboard/_components/SkillTagList/useSkillTagList";
 
 const columns: TableProps<SkillTag>["columns"] = [
   {
@@ -14,9 +15,9 @@ const columns: TableProps<SkillTag>["columns"] = [
   },
   { title: "Name", dataIndex: "name", key: "name" },
   {
-    title: "Key",
-    dataIndex: "key",
-    key: "key",
+    title: "Code",
+    dataIndex: "code",
+    key: "code",
   },
 ];
 
@@ -25,10 +26,11 @@ type Props = {
 };
 
 const SkillTagListPresenter = ({ skillTags }: Props) => {
+  const { skillTagWithKeys } = useSkillTagList(skillTags);
   return (
     <>
       <Title level={3}>SkillTagList</Title>
-      <Table dataSource={skillTags} columns={columns} />
+      <Table dataSource={skillTagWithKeys} columns={columns} />
     </>
   );
 };

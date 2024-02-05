@@ -14,7 +14,7 @@ const SkillTagEditFormPresenter = ({ skillTag }: Props) => {
       <div>form</div>
       <div>{skillTag.id}</div>
       <div>{skillTag.name}</div>
-      <div>{skillTag.key}</div>
+      <div>{skillTag.code}</div>
     </>
   );
 };
