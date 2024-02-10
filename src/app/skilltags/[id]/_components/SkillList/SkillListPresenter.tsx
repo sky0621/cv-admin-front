@@ -1,7 +1,6 @@
 "use client";
 
 import { Skill } from "@/lib/api";
-import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
 import { useSkillList } from "@/app/skilltags/[id]/_components/SkillList/useSkillPresenter";
@@ -32,12 +31,7 @@ type Props = {
 
 const SkillListPresenter = ({ skills }: Props) => {
   const { skillWithKeys } = useSkillList(skills);
-  return (
-    <>
-      <Title level={3}>SkillList</Title>
-      <Table dataSource={skillWithKeys} columns={columns} />
-    </>
-  );
+  return <Table dataSource={skillWithKeys} columns={columns} />;
 };
 
 export default SkillListPresenter;
