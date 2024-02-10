@@ -7,9 +7,15 @@ const SkillTagEditPage = async ({ params }: { params: { id: string } }) => {
   return (
     <>
       <Title level={2}>EditSkillTag</Title>
-      <SkillTagEditForm skillTagId={params.id} />
-      <SkillAdd skillTagId={params.id} />
-      <SkillList skillTagId={params.id} />
+      <div>
+        <SkillTagEditForm skillTagId={params.id} />
+      </div>
+      <div>
+        <SkillAdd skillTagId={params.id} />
+      </div>
+      <div>
+        <SkillList skillTagId={params.id} />
+      </div>
     </>
   );
 };
