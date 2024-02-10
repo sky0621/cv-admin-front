@@ -1,3 +1,0 @@
-interface RowItem {
-  key: string;
-}

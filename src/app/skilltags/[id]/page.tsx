@@ -7,13 +7,13 @@ const SkillTagEditPage = async ({ params }: { params: { id: string } }) => {
   return (
     <>
       <Title level={2}>EditSkillTag</Title>
-      <div>
+      <div style={{ padding: "12px 0" }}>
         <SkillTagEditForm skillTagId={params.id} />
       </div>
-      <div>
+      <div style={{ padding: "12px 0" }}>
         <SkillAdd skillTagId={params.id} />
       </div>
-      <div>
+      <div style={{ padding: "12px 0" }}>
         <SkillList skillTagId={params.id} />
       </div>
     </>
