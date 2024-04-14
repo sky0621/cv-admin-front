@@ -11,10 +11,11 @@ type Props = {
 };
 
 const SkillAddPresenter = ({ skillTagId }: Props) => {
-  const { isShowModal, openModal, closeModal, addSkill } =
+  const { isShowModal, openModal, closeModal, addSkill, contextHolder } =
     useSkillAdd(skillTagId);
   return (
     <>
+      {contextHolder}
       {isShowModal && (
         <Modal
           open={true}

@@ -21,6 +21,7 @@ type Props = {
 };
 
 const SkillTagListPresenter = ({ skillTags }: Props) => {
+  console.info(skillTags);
   const { skillTagWithKeys } = useSkillTagList(skillTags);
   return (
     <>

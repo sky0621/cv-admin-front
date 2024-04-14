@@ -16,10 +16,10 @@ export const useSkillTagList = (skillTags: SkillTag[]) => {
   useEffect(() => {
     setSkillTagWithKeys(
       skillTags.map(
-        (user) =>
+        (skillTag) =>
           ({
-            ...user,
-            key: toSkillTagKey(user.id),
+            ...skillTag,
+            key: toSkillTagKey(skillTag.id),
           }) as unknown as SkillTagWithKey,
       ),
     );
