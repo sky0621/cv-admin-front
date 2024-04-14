@@ -32,23 +32,17 @@ export interface Skill {
    */
   name?: string;
   /**
-   * スキルコード
-   * @type {string}
-   * @memberof Skill
-   */
-  code?: string;
-  /**
    * URL
    * @type {string}
    * @memberof Skill
    */
   url?: string;
   /**
-   * スキルタグコード
-   * @type {string}
+   * スキルタグを一意に識別するキー
+   * @type {number}
    * @memberof Skill
    */
-  tagCode?: string;
+  tagId?: number;
 }
 
 /**
@@ -74,9 +68,8 @@ export function SkillFromJSONTyped(
   return {
     id: !exists(json, "id") ? undefined : json["id"],
     name: !exists(json, "name") ? undefined : json["name"],
-    code: !exists(json, "code") ? undefined : json["code"],
     url: !exists(json, "url") ? undefined : json["url"],
-    tagCode: !exists(json, "tagCode") ? undefined : json["tagCode"],
+    tagId: !exists(json, "tagId") ? undefined : json["tagId"],
   };
 }
 
@@ -90,8 +83,7 @@ export function SkillToJSON(value?: Skill | null): any {
   return {
     id: value.id,
     name: value.name,
-    code: value.code,
     url: value.url,
-    tagCode: value.tagCode,
+    tagId: value.tagId,
   };
 }

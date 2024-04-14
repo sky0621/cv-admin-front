@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { z } from "zod";
+import { addSkillServerAction } from "@/app/skilltags/[id]/_components/SkillAdd/action";
 
-export const useSkillAdd = () => {
+export const useSkillAdd = (skillTagId: number) => {
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
   const openModal = () => {
@@ -13,9 +14,19 @@ export const useSkillAdd = () => {
   };
 
   const addSkill = async (values: any) => {
-    console.info(values);
     const addSkillForm: AddSkillForm = AddSkillFormSchema.parse(values);
     console.info(addSkillForm);
+    console.info(skillTagId);
+    try {
+      const res = addSkillServerAction({
+        name: addSkillForm.name,
+        url: addSkillForm.url,
+        tagId: skillTagId,
+      });
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
   };
 
   return { isShowModal, openModal, closeModal, addSkill };
@@ -23,8 +34,7 @@ export const useSkillAdd = () => {
 
 const AddSkillFormSchema = z.object({
   name: z.string(),
-  code: z.string(),
-  url: z.string().optional().nullable(),
+  url: z.string().optional(),
 });
 
 type AddSkillForm = z.infer<typeof AddSkillFormSchema>;

@@ -14,11 +14,6 @@ const columns: TableProps<Skill>["columns"] = [
   },
   { title: "Name", dataIndex: "name", key: "name" },
   {
-    title: "Code",
-    dataIndex: "code",
-    key: "code",
-  },
-  {
     title: "URL",
     dataIndex: "url",
     key: "url",

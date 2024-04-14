@@ -1,17 +1,18 @@
 "use client";
 
-import { useSkillAdd } from "@/app/skilltags/[id]/_components/SkillAdd/useSkillAdd";
+import { useSkillAdd } from "./useSkillAdd";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Col, Form, Input, Modal, Row } from "antd";
 import Title from "antd/es/typography/Title";
 import styles from "./styles.module.css";
 
 type Props = {
-  addSkill: () => void;
+  skillTagId: number;
 };
 
-const SkillAddPresenter = () => {
-  const { isShowModal, openModal, closeModal, addSkill } = useSkillAdd();
+const SkillAddPresenter = ({ skillTagId }: Props) => {
+  const { isShowModal, openModal, closeModal, addSkill } =
+    useSkillAdd(skillTagId);
   return (
     <>
       {isShowModal && (
@@ -27,30 +28,28 @@ const SkillAddPresenter = () => {
             <Form.Item name="name" rules={[{ required: true }]}>
               <Input placeholder="Name" />
             </Form.Item>
-            <Form.Item name="code" rules={[{ required: true }]}>
-              <Input placeholder="Code" />
-            </Form.Item>
             <Form.Item name="url">
               <Input placeholder="URL" />
             </Form.Item>
             <Form.Item>
-              <div style={{ display: "inline-block", marginRight: "12px" }}>
-                <Button type="default" onClick={closeModal}>
-                  Cancel
-                </Button>
-              </div>
-              <Button type="primary" htmlType="submit">
-                Save
-              </Button>
+              <Row>
+                <Col span={5}>
+                  <Button type="default" onClick={closeModal}>
+                    Cancel
+                  </Button>
+                </Col>
+                <Col span={5}>
+                  <Button type="primary" htmlType="submit">
+                    Save
+                  </Button>
+                </Col>
+              </Row>
             </Form.Item>
           </Form>
         </Modal>
       )}
       {!isShowModal && (
-        <PlusCircleOutlined
-          style={{ fontSize: "48px", color: "purple" }}
-          onClick={openModal}
-        />
+        <PlusCircleOutlined className={styles.plusButton} onClick={openModal} />
       )}
     </>
   );

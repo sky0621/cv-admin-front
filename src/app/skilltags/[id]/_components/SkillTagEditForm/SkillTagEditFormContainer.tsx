@@ -1,15 +1,12 @@
-import { SkillsApi } from "@/lib/api";
 import SkillTagEditFormPresenter from "@/app/skilltags/[id]/_components/SkillTagEditForm/SkillTagEditFormPresenter";
+import { getSkillTagBySkillTagId } from "@/feature/skillTag";
 
 type Props = {
-  skillTagId: string;
+  skillTagId: number;
 };
 
 const SkillTagEditFormContainer = async ({ skillTagId }: Props) => {
-  const skillTag = await new SkillsApi().skilltagsBySkillTagIdGet({
-    bySkillTagId: Number(skillTagId),
-  });
-
+  const skillTag = await getSkillTagBySkillTagId(skillTagId);
   return <SkillTagEditFormPresenter skillTag={skillTag} />;
 };
 

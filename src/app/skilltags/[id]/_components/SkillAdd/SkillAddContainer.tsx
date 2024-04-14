@@ -1,11 +1,11 @@
-import SkillAddPresenter from "@/app/skilltags/[id]/_components/SkillAdd/SkillAddPresenter";
+import SkillAddPresenter from "./SkillAddPresenter";
 
 type Props = {
-  skillTagId: string;
+  skillTagId: number;
 };
 
 const SkillAddContainer = ({ skillTagId }: Props) => {
-  return <SkillAddPresenter />;
+  return <SkillAddPresenter skillTagId={skillTagId} />;
 };
 
 export default SkillAddContainer;

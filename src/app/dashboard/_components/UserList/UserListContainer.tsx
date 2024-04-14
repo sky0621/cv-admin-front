@@ -1,9 +1,8 @@
 import UserListPresenter from "@/app/dashboard/_components/UserList/UserListPresenter";
-import { UsersApi } from "@/lib/api";
+import { getAllUsers } from "@/feature/user";
 
 const UserListContainer = async () => {
-  const users = await new UsersApi().usersGet();
-
+  const users = await getAllUsers();
   return <UserListPresenter users={users} />;
 };
 

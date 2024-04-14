@@ -1,3 +1,8 @@
 .cancel {
   display: none !important;
 }
+
+.plusButton {
+  font-size: 36px;
+  color: purple !important;
+}

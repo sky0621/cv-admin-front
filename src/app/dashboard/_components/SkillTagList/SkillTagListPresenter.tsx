@@ -14,11 +14,6 @@ const columns: TableProps<SkillTag>["columns"] = [
     render: (id) => <Link href={`/skilltags/${id}`}>{id}</Link>,
   },
   { title: "Name", dataIndex: "name", key: "name" },
-  {
-    title: "Code",
-    dataIndex: "code",
-    key: "code",
-  },
 ];
 
 type Props = {

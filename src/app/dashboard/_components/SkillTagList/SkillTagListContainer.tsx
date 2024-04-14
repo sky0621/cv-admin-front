@@ -1,9 +1,8 @@
 import SkillTagListPresenter from "@/app/dashboard/_components/SkillTagList/SkillTagListPresenter";
-import { SkillsApi } from "@/lib/api";
+import { getAllSkillTags } from "@/feature/skillTag";
 
 const SkillTagListContainer = async () => {
-  const skillTags = await new SkillsApi().skilltagsGet();
-
+  const skillTags = await getAllSkillTags();
   return <SkillTagListPresenter skillTags={skillTags} />;
 };
 
