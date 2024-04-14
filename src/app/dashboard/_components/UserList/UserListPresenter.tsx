@@ -1,6 +1,6 @@
 "use client";
 
-import { UserAttribute } from "@/lib/api";
+import { UserAttribute, UserQualification } from "@/lib/api";
 import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
@@ -29,7 +29,7 @@ const columns: TableProps<ColumnType>["columns"] = [
 ];
 
 type Props = {
-  users: UserAttribute[];
+  users: UserQualification[];
 };
 
 const UserListPresenter = ({ users }: Props) => {
