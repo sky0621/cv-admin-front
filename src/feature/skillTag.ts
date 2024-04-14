@@ -11,3 +11,7 @@ export const getSkillTagBySkillTagId = (
     bySkillTagId: skillTagId,
   });
 };
+
+export const addSkillTag = (skillTag: SkillTag): Promise<SkillTag> => {
+  return new SkillsApi().skilltagsPost({ skillTag });
+};

@@ -11,9 +11,19 @@ const columns: TableProps<SkillTag>["columns"] = [
     title: "ID",
     dataIndex: "id",
     key: "id",
+    sorter: (a, b) => (a.id ?? 0) - (b.id ?? 0),
+    sortDirections: ["ascend", "descend"],
     render: (id) => <Link href={`/skilltags/${id}`}>{id}</Link>,
+    width: "120px",
   },
-  { title: "Name", dataIndex: "name", key: "name" },
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+    sorter: (a, b) => ((a.name ?? "") < (b.name ?? "") ? -1 : 1),
+    sortDirections: ["ascend", "descend"],
+    defaultSortOrder: "ascend",
+  },
 ];
 
 type Props = {
