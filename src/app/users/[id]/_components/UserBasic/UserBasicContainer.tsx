@@ -9,7 +9,6 @@ type Props = {
 };
 
 const UserBasicContainer = async ({ userId }: Props) => {
-  console.info(userId);
   const usersApi = new UsersApi();
   const results = await Promise.all([
     usersApi.usersByUserIdAttributeGet({

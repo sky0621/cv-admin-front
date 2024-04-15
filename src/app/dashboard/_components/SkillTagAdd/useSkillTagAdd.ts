@@ -18,12 +18,11 @@ export const useSkillTagAdd = () => {
   const addSkillTag = async (values: any) => {
     const addSkillTagForm: AddSkillTagForm =
       AddSkillTagFormSchema.parse(values);
-    console.info(addSkillTagForm);
+
     try {
       const res = await addSkillTagServerAction({
         name: addSkillTagForm.name,
       });
-      console.info(res);
       messageApi.open({
         type: "success",
         content: "id:" + res.id + " is created",

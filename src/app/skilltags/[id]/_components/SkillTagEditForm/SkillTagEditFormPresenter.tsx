@@ -7,8 +7,6 @@ type Props = {
 };
 
 const SkillTagEditFormPresenter = ({ skillTag }: Props) => {
-  console.info(skillTag);
-
   return (
     <>
       <div>form</div>
