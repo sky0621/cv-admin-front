@@ -8,7 +8,7 @@ type Props = {
   userId: number;
 };
 
-const UserEditFormContainer = async ({ userId }: Props) => {
+const UserBasicContainer = async ({ userId }: Props) => {
   console.info(userId);
   const usersApi = new UsersApi();
   const results = await Promise.all([
@@ -33,4 +33,4 @@ const UserEditFormContainer = async ({ userId }: Props) => {
   );
 };
 
-export default UserEditFormContainer;
+export default UserBasicContainer;

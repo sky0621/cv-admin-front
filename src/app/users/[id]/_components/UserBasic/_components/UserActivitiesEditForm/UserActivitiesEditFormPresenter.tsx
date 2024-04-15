@@ -3,7 +3,7 @@
 import { UserActivity } from "@/lib/api";
 import { Form } from "antd";
 import Title from "antd/es/typography/Title";
-import { useUserActivitiesEditForm } from "@/app/users/[id]/_components/UserEditForm/_components/UserActivitiesEditForm/useUserActivitiesEditForm";
+import { useUserActivitiesEditForm } from "@/app/users/[id]/_components/UserBasic/_components/UserActivitiesEditForm/useUserActivitiesEditForm";
 
 type Props = {
   activities: UserActivity[];

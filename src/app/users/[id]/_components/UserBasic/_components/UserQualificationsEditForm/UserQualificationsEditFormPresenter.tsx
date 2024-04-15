@@ -3,7 +3,7 @@
 import { UserQualification } from "@/lib/api";
 import { Form } from "antd";
 import Title from "antd/es/typography/Title";
-import { useUserQualificationsEditForm } from "@/app/users/[id]/_components/UserEditForm/_components/UserQualificationsEditForm/useUserQualificationsEditForm";
+import { useUserQualificationsEditForm } from "@/app/users/[id]/_components/UserBasic/_components/UserQualificationsEditForm/useUserQualificationsEditForm";
 
 type Props = {
   qualifications: UserQualification[];

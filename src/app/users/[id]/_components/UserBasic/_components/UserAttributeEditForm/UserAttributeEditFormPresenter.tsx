@@ -2,8 +2,8 @@
 
 import { UserAttribute } from "@/lib/api";
 import { Form, Input } from "antd";
-import { useUserAttributeEditForm } from "@/app/users/[id]/_components/UserEditForm/_components/UserAttributeEditForm/useUserAttributeEditForm";
 import Title from "antd/es/typography/Title";
+import { useUserAttributeEditForm } from "@/app/users/[id]/_components/UserBasic/_components/UserAttributeEditForm/useUserAttributeEditForm";
 
 type Props = {
   attribute: UserAttribute;

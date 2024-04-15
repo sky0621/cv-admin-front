@@ -1,18 +1,31 @@
-import Title from "antd/es/typography/Title";
-import { UserEditForm } from "@/app/users/[id]/_components/UserEditForm";
-import { ErrorBoundary } from "react-error-boundary";
-import { ErrorBoundaryFallback } from "@/app/_components/ErrorBoundaryFallback";
+import { Tabs, TabsProps } from "antd";
+import { UserBasic } from "@/app/users/[id]/_components/UserBasic";
 
 const UserEditPage = async ({ params }: { params: { id: string } }) => {
   const userId = Number(params.id);
-  return (
-    <>
-      <Title level={2}>EditUser</Title>
-      <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
-        <UserEditForm userId={userId} />
-      </ErrorBoundary>
-    </>
-  );
+  const items: TabsProps["items"] = [
+    {
+      key: "1",
+      label: "Basic",
+      children: <UserBasic userId={userId} />,
+    },
+    {
+      key: "2",
+      label: "Career",
+      children: "Content of Tab Pane 2",
+    },
+    {
+      key: "3",
+      label: "Skill",
+      children: "Content of Tab Pane 3",
+    },
+    {
+      key: "4",
+      label: "Note",
+      children: "Content of Tab Pane 4",
+    },
+  ];
+  return <Tabs defaultActiveKey="1" items={items} />;
 };
 
 export default UserEditPage;
