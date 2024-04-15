@@ -1,12 +1,15 @@
 import UserCareerPresenter from "@/app/users/[id]/_components/UserCareer/UserCareerPresenter";
+import { UsersApi } from "@/lib/api";
 
 type Props = {
   userId: number;
 };
 
 const UserCareerContainer = async ({ userId }: Props) => {
-  //
-  return <UserCareerPresenter userId={userId} />;
+  const careerGroups = await new UsersApi().usersByUserIdCareergroupsGet({
+    byUserId: userId,
+  });
+  return <UserCareerPresenter userId={userId} careerGroups={careerGroups} />;
 };
 
 export default UserCareerContainer;
