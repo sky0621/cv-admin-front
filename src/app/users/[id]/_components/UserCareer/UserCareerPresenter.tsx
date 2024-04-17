@@ -27,12 +27,29 @@ const UserCareerPresenter = async ({ userId, careerGroups }: Props) => {
                 <div style={{ marginBottom: "8px" }}>
                   {career.description?.map((item) => <div>{item}</div>)}
                 </div>
-                <div>
+                <div style={{ marginBottom: "8px" }}>
                   {career.tasks?.map((task, idx) => (
                     <div key={idx}>
                       <div style={{ fontWeight: "bold" }}>{task.name}</div>
                       <div>
                         {task.description?.map((item) => <div>{item}</div>)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  {career.skillGroups?.map((skillGroup, idx) => (
+                    <div key={idx} style={{ marginBottom: "8px" }}>
+                      <div style={{ fontWeight: "bold" }}>
+                        {skillGroup.label}
+                      </div>
+                      <div>
+                        {skillGroup.skills?.map((skill, idx) => (
+                          <div key={idx}>
+                            [ID:{skill.skill?.id}] {skill.skill?.name} (
+                            {skill.skill?.url})
+                          </div>
+                        ))}
                       </div>
                     </div>
                   ))}

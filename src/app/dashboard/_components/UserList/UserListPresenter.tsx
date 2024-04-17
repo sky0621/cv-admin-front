@@ -16,7 +16,7 @@ const columns: TableProps<ColumnType>["columns"] = [
     render: (id) => <Link href={`/users/${id}`}>{id}</Link>,
   },
   { title: "Name", dataIndex: "name", key: "name" },
-  { title: "NickName", dataIndex: "nickName", key: "nickName" },
+  { title: "NickName", dataIndex: "nickname", key: "nickname" },
   {
     title: "Birthday",
     dataIndex: "birthday",
