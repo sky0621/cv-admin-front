@@ -1,9 +1,9 @@
 import { Tabs, TabsProps } from "antd";
-import { UserBasic } from "@/app/users/[id]/_components/UserBasic";
-import { UserCareerGroupList } from "@/app/users/[id]/_components/UserCareerGroupList";
+import { UserBasic } from "@/app/users/[userId]/_components/UserBasic";
+import { UserCareerGroupList } from "@/app/users/[userId]/_components/UserCareerGroupList";
 
-const UserEditPage = async ({ params }: { params: { id: string } }) => {
-  const userId = Number(params.id);
+const UserEditPage = async ({ params }: { params: { userId: string } }) => {
+  const userId = Number(params.userId);
   const items: TabsProps["items"] = [
     {
       key: "1",

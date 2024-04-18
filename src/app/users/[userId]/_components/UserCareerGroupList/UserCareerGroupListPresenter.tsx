@@ -8,22 +8,26 @@ import { useUserCareerGroupList } from "./useUserCareerGroupList";
 
 type ColumnType = Omit<UserCareerGroup, "careers">;
 
-const columns: TableProps<ColumnType>["columns"] = [
-  {
-    title: "ID",
-    dataIndex: "id",
-    key: "id",
-    render: (id) => <Link href={`/users/${id}`}>{id}</Link>,
-  },
-  { title: "Label", dataIndex: "label", key: "label" },
-];
-
 type Props = {
+  userId: number;
   careerGroups: UserCareerGroup[];
 };
 
-const UserCareerGroupListPresenter = ({ careerGroups }: Props) => {
+const UserCareerGroupListPresenter = ({ userId, careerGroups }: Props) => {
   const { userCareerGroupWithKeys } = useUserCareerGroupList(careerGroups);
+
+  const columns: TableProps<ColumnType>["columns"] = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+      render: (id) => (
+        <Link href={`/users/${userId}/careergroups/${id}`}>{id}</Link>
+      ),
+    },
+    { title: "Label", dataIndex: "label", key: "label" },
+  ];
+
   return (
     <>
       <Title level={3}>UserCareerGroupList</Title>

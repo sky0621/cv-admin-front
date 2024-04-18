@@ -1,4 +1,4 @@
-import UserCareerPresenter from "@/app/users/[id]/_components/UserCareer/UserCareerPresenter";
+import UserCareerPresenter from "@/app/users/[userId]/_components/UserCareer/UserCareerPresenter";
 import { UsersApi } from "@/lib/api";
 
 type Props = {
