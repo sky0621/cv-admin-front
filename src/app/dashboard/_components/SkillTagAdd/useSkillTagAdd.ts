@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { message } from "antd";
-import { addSkillTagServerAction } from "@/app/dashboard/_components/SkillTagAdd/action";
+import { addSkillTagServerAction } from "./action";
 
 export const useSkillTagAdd = () => {
   const [isShowModal, setIsShowModal] = useState<boolean>(false);

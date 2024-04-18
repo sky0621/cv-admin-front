@@ -4,7 +4,7 @@ import { UserAttribute } from "@/lib/api";
 import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
-import { useUserList } from "@/app/dashboard/_components/UserList/useUserList";
+import { useUserList } from "./useUserList";
 
 type ColumnType = Omit<UserAttribute, "avatarUrl" | "pr">;
 

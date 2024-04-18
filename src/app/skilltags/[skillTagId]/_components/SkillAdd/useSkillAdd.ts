@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { addSkillServerAction } from "@/app/skilltags/[id]/_components/SkillAdd/action";
+import { addSkillServerAction } from "@/app/skilltags/[skillTagId]/_components/SkillAdd/action";
 import { message } from "antd";
 
 export const useSkillAdd = (skillTagId: number) => {

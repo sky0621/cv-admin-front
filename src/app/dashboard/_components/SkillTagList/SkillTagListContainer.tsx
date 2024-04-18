@@ -1,4 +1,4 @@
-import SkillTagListPresenter from "@/app/dashboard/_components/SkillTagList/SkillTagListPresenter";
+import SkillTagListPresenter from "./SkillTagListPresenter";
 import { getAllSkillTags } from "@/feature/skillTag";
 
 const SkillTagListContainer = async () => {

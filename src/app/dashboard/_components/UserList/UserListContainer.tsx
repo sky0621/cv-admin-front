@@ -1,4 +1,4 @@
-import UserListPresenter from "@/app/dashboard/_components/UserList/UserListPresenter";
+import UserListPresenter from "./UserListPresenter";
 import { getAllUsers } from "@/feature/user";
 
 const UserListContainer = async () => {

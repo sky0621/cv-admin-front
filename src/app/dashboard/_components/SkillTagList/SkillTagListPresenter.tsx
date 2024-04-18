@@ -4,7 +4,7 @@ import { SkillTag } from "@/lib/api";
 import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
-import { useSkillTagList } from "@/app/dashboard/_components/SkillTagList/useSkillTagList";
+import { useSkillTagList } from "./useSkillTagList";
 
 const columns: TableProps<SkillTag>["columns"] = [
   {
