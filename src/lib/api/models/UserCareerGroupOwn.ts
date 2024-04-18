@@ -20,6 +20,12 @@ import { exists, mapValues } from "../runtime";
  */
 export interface UserCareerGroupOwn {
   /**
+   * キャリアグループを一意に識別するID
+   * @type {number}
+   * @memberof UserCareerGroupOwn
+   */
+  id?: number;
+  /**
    * キャリアグループラベル
    * @type {string}
    * @memberof UserCareerGroupOwn
@@ -48,6 +54,7 @@ export function UserCareerGroupOwnFromJSONTyped(
     return json;
   }
   return {
+    id: !exists(json, "id") ? undefined : json["id"],
     label: !exists(json, "label") ? undefined : json["label"],
   };
 }
@@ -62,6 +69,7 @@ export function UserCareerGroupOwnToJSON(
     return null;
   }
   return {
+    id: value.id,
     label: value.label,
   };
 }

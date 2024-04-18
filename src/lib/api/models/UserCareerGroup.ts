@@ -27,6 +27,12 @@ import {
  */
 export interface UserCareerGroup {
   /**
+   * キャリアグループを一意に識別するID
+   * @type {number}
+   * @memberof UserCareerGroup
+   */
+  id?: number;
+  /**
    * キャリアグループラベル
    * @type {string}
    * @memberof UserCareerGroup
@@ -61,6 +67,7 @@ export function UserCareerGroupFromJSONTyped(
     return json;
   }
   return {
+    id: !exists(json, "id") ? undefined : json["id"],
     label: !exists(json, "label") ? undefined : json["label"],
     careers: !exists(json, "careers")
       ? undefined
@@ -76,6 +83,7 @@ export function UserCareerGroupToJSON(value?: UserCareerGroup | null): any {
     return null;
   }
   return {
+    id: value.id,
     label: value.label,
     careers:
       value.careers === undefined

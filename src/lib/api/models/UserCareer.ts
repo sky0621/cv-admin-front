@@ -45,6 +45,12 @@ import {
  */
 export interface UserCareer {
   /**
+   * キャリアを一意に識別するID
+   * @type {number}
+   * @memberof UserCareer
+   */
+  id?: number;
+  /**
    * キャリア名
    * @type {string}
    * @memberof UserCareer
@@ -103,6 +109,7 @@ export function UserCareerFromJSONTyped(
     return json;
   }
   return {
+    id: !exists(json, "id") ? undefined : json["id"],
     name: !exists(json, "name") ? undefined : json["name"],
     description: !exists(json, "description") ? undefined : json["description"],
     from: !exists(json, "from")
@@ -126,6 +133,7 @@ export function UserCareerToJSON(value?: UserCareer | null): any {
     return null;
   }
   return {
+    id: value.id,
     name: value.name,
     description: value.description,
     from: CareerPeriodFromToJSON(value.from),
