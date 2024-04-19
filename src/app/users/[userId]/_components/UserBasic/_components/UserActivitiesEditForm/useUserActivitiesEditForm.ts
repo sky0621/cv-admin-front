@@ -1,6 +1,6 @@
-import { UserQualification } from "@/lib/api";
+import { UserActivity } from "@/lib/api";
 
-export const useUserActivitiesEditForm = (activities: UserQualification[]) => {
+export const useUserActivitiesEditForm = (activities: UserActivity[]) => {
   const editUserActivities = async (values: any) => {};
 
   return {

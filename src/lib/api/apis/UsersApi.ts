@@ -80,6 +80,11 @@ export interface UsersByUserIdCareergroupsByCareerGroupIdDeleteRequest {
   byCareerGroupId: number;
 }
 
+export interface UsersByUserIdCareergroupsByCareerGroupIdGetRequest {
+  byUserId: number;
+  byCareerGroupId: number;
+}
+
 export interface UsersByUserIdCareergroupsByCareerGroupIdPutRequest {
   byUserId: number;
   byCareerGroupId: number;
@@ -541,6 +546,76 @@ export class UsersApi extends runtime.BaseAPI {
       requestParameters,
       initOverrides,
     );
+  }
+
+  /**
+   * 指定ユーザーの指定１キャリアを取得する。
+   * １キャリア取得
+   */
+  async usersByUserIdCareergroupsByCareerGroupIdGetRaw(
+    requestParameters: UsersByUserIdCareergroupsByCareerGroupIdGetRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<UserCareerGroup>> {
+    if (
+      requestParameters.byUserId === null ||
+      requestParameters.byUserId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "byUserId",
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdGet.",
+      );
+    }
+
+    if (
+      requestParameters.byCareerGroupId === null ||
+      requestParameters.byCareerGroupId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "byCareerGroupId",
+        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdGet.",
+      );
+    }
+
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    const response = await this.request(
+      {
+        path: `/users/{byUserId}/careergroups/{byCareerGroupId}`
+          .replace(
+            `{${"byUserId"}}`,
+            encodeURIComponent(String(requestParameters.byUserId)),
+          )
+          .replace(
+            `{${"byCareerGroupId"}}`,
+            encodeURIComponent(String(requestParameters.byCareerGroupId)),
+          ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      UserCareerGroupFromJSON(jsonValue),
+    );
+  }
+
+  /**
+   * 指定ユーザーの指定１キャリアを取得する。
+   * １キャリア取得
+   */
+  async usersByUserIdCareergroupsByCareerGroupIdGet(
+    requestParameters: UsersByUserIdCareergroupsByCareerGroupIdGetRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<UserCareerGroup> {
+    const response = await this.usersByUserIdCareergroupsByCareerGroupIdGetRaw(
+      requestParameters,
+      initOverrides,
+    );
+    return await response.value();
   }
 
   /**
