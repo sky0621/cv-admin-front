@@ -5,7 +5,7 @@ import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
 import { useUserCareerGroupList } from "./useUserCareerGroupList";
-import { UserCareerGroupAdd } from "@/app/users/[userId]/_components/UserCareerGroupList/_components/UserGroupAdd";
+import { UserCareerGroupAdd } from "./_components/UserCareerGroupAdd";
 
 type ColumnType = Omit<UserCareerGroup, "careers">;
 
