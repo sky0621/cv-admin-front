@@ -1,10 +1,12 @@
 "use client";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Modal, Row } from "antd";
 import Title from "antd/es/typography/Title";
 import styles from "./styles.module.css";
 import { useUserCareerAdd } from "./useUserCareerAdd";
+import { MinusCircleOutlined } from "@ant-design/icons";
 
 type Props = {
   userId: number;
@@ -27,22 +29,63 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
         >
           <Title level={3}>Add UserCareer Form</Title>
           <Form onFinish={addUserCareer}>
+            <div>Name</div>
             <Form.Item name="name" rules={[{ required: true }]}>
-              <Input placeholder="Name" />
+              <Input style={{ width: "60%" }} />
             </Form.Item>
-            <Form.List name="description">
+            <div>Description</div>
+            <Form.List
+              name="description"
+              rules={[
+                {
+                  validator: async (_, descriptions) => {
+                    if (!descriptions || descriptions.length < 1) {
+                      return Promise.reject(
+                        new Error("At least 1 descriptions"),
+                      );
+                    }
+                  },
+                },
+              ]}
+            >
               {(fields, { add, remove }, { errors }) => (
                 <>
                   {fields.map((field, idx) => (
-                    <Form.Item
-                      label={idx === 0 ? "Description" : ""}
-                      key={field.key}
-                    >
-                      <Form.Item>
+                    <Form.Item key={field.key}>
+                      <Form.Item
+                        {...field}
+                        validateTrigger={["onChange", "onBlur"]}
+                        rules={[
+                          {
+                            required: true,
+                            whitespace: true,
+                            message:
+                              "Please input description or delete this field.",
+                          },
+                        ]}
+                        noStyle
+                      >
                         <Input />
                       </Form.Item>
+                      {fields.length > 1 ? (
+                        <MinusCircleOutlined
+                          className="dynamic-delete-button"
+                          onClick={() => remove(field.name)}
+                        />
+                      ) : null}
                     </Form.Item>
                   ))}
+                  <Form.Item>
+                    <Button
+                      type="dashed"
+                      onClick={() => add()}
+                      style={{ width: "60%" }}
+                      icon={<PlusOutlined />}
+                    >
+                      Add field
+                    </Button>
+                    <Form.ErrorList errors={errors} />
+                  </Form.Item>
                 </>
               )}
             </Form.List>

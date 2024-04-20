@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 type UserCareerWithKey = UserCareer & "key";
 
-export const useUserCareerList = (careers: UserCareer[]) => {
+export const useUserCareerList = (careers: UserCareer[] | undefined) => {
   const [userCareerWithKeys, setUserCareerWithKeys] =
     useState<UserCareerWithKey[]>();
 
@@ -15,6 +15,7 @@ export const useUserCareerList = (careers: UserCareer[]) => {
   };
 
   useEffect(() => {
+    if (!careers) return;
     setUserCareerWithKeys(
       careers.map(
         (career) =>

@@ -5,8 +5,8 @@ import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
 import { useUserCareerList } from "./useUserCareerList";
-import { toYM } from "@/app/users/[userId]/careergroups/[careerGroupId]/_components/UserCareerGroupEdit/_components/UserCareerList/util";
-import { UserCareerAdd } from "@/app/users/[userId]/careergroups/[careerGroupId]/_components/UserCareerGroupEdit/_components/UserCareerList/_components/UserCareerAdd";
+import { toYM } from "./util";
+import { UserCareerAdd } from "./_components/UserCareerAdd";
 
 type ColumnType = Omit<UserCareer, "careers">;
 
@@ -17,7 +17,6 @@ type Props = {
 };
 
 const UserCareerListPresenter = ({ userId, careerGroupId, careers }: Props) => {
-  if (!careers) return null;
   const { userCareerWithKeys } = useUserCareerList(careers);
 
   const columns: TableProps<ColumnType>["columns"] = [
