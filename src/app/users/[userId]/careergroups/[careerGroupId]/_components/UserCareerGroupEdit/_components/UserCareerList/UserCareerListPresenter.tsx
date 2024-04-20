@@ -6,6 +6,7 @@ import { Table, TableProps } from "antd";
 import Link from "next/link";
 import { useUserCareerList } from "./useUserCareerList";
 import { toYM } from "@/app/users/[userId]/careergroups/[careerGroupId]/_components/UserCareerGroupEdit/_components/UserCareerList/util";
+import { UserCareerAdd } from "@/app/users/[userId]/careergroups/[careerGroupId]/_components/UserCareerGroupEdit/_components/UserCareerList/_components/UserCareerAdd";
 
 type ColumnType = Omit<UserCareer, "careers">;
 
@@ -53,6 +54,7 @@ const UserCareerListPresenter = ({ userId, careerGroupId, careers }: Props) => {
   return (
     <>
       <Title level={3}>UserCareerList</Title>
+      <UserCareerAdd userId={userId} careerGroupId={careerGroupId} />
       <Table dataSource={userCareerWithKeys} columns={columns} />
     </>
   );

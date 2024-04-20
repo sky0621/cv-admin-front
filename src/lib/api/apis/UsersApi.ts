@@ -69,6 +69,18 @@ export interface UsersByUserIdAttributePutRequest {
   userAttribute: UserAttribute;
 }
 
+export interface UsersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGetRequest {
+  byUserId: number;
+  byCareerGroupId: number;
+  byCareerId: number;
+}
+
+export interface UsersByUserIdCareergroupsByCareerGroupIdCareersPostRequest {
+  byUserId: number;
+  byCareerGroupId: number;
+  userCareer: UserCareer;
+}
+
 export interface UsersByUserIdCareergroupsByCareerGroupIdCareersPutRequest {
   byUserId: number;
   byCareerGroupId: number;
@@ -398,6 +410,175 @@ export class UsersApi extends runtime.BaseAPI {
   }
 
   /**
+   * 指定ユーザーの指定１キャリアを取得する。
+   * １キャリア取得
+   */
+  async usersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGetRaw(
+    requestParameters: UsersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGetRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<UserCareer>> {
+    if (
+      requestParameters.byUserId === null ||
+      requestParameters.byUserId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "byUserId",
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGet.",
+      );
+    }
+
+    if (
+      requestParameters.byCareerGroupId === null ||
+      requestParameters.byCareerGroupId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "byCareerGroupId",
+        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGet.",
+      );
+    }
+
+    if (
+      requestParameters.byCareerId === null ||
+      requestParameters.byCareerId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "byCareerId",
+        "Required parameter requestParameters.byCareerId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGet.",
+      );
+    }
+
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    const response = await this.request(
+      {
+        path: `/users/{byUserId}/careergroups/{byCareerGroupId}/careers/{byCareerId}`
+          .replace(
+            `{${"byUserId"}}`,
+            encodeURIComponent(String(requestParameters.byUserId)),
+          )
+          .replace(
+            `{${"byCareerGroupId"}}`,
+            encodeURIComponent(String(requestParameters.byCareerGroupId)),
+          )
+          .replace(
+            `{${"byCareerId"}}`,
+            encodeURIComponent(String(requestParameters.byCareerId)),
+          ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      UserCareerFromJSON(jsonValue),
+    );
+  }
+
+  /**
+   * 指定ユーザーの指定１キャリアを取得する。
+   * １キャリア取得
+   */
+  async usersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGet(
+    requestParameters: UsersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGetRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<UserCareer> {
+    const response =
+      await this.usersByUserIdCareergroupsByCareerGroupIdCareersByCareerIdGetRaw(
+        requestParameters,
+        initOverrides,
+      );
+    return await response.value();
+  }
+
+  /**
+   * １キャリアグループ内の１キャリアを登録する。
+   * １キャリアグループ内の１キャリア登録
+   */
+  async usersByUserIdCareergroupsByCareerGroupIdCareersPostRaw(
+    requestParameters: UsersByUserIdCareergroupsByCareerGroupIdCareersPostRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<UserCareer>> {
+    if (
+      requestParameters.byUserId === null ||
+      requestParameters.byUserId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "byUserId",
+        "Required parameter requestParameters.byUserId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPost.",
+      );
+    }
+
+    if (
+      requestParameters.byCareerGroupId === null ||
+      requestParameters.byCareerGroupId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "byCareerGroupId",
+        "Required parameter requestParameters.byCareerGroupId was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPost.",
+      );
+    }
+
+    if (
+      requestParameters.userCareer === null ||
+      requestParameters.userCareer === undefined
+    ) {
+      throw new runtime.RequiredError(
+        "userCareer",
+        "Required parameter requestParameters.userCareer was null or undefined when calling usersByUserIdCareergroupsByCareerGroupIdCareersPost.",
+      );
+    }
+
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    const response = await this.request(
+      {
+        path: `/users/{byUserId}/careergroups/{byCareerGroupId}/careers`
+          .replace(
+            `{${"byUserId"}}`,
+            encodeURIComponent(String(requestParameters.byUserId)),
+          )
+          .replace(
+            `{${"byCareerGroupId"}}`,
+            encodeURIComponent(String(requestParameters.byCareerGroupId)),
+          ),
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: UserCareerToJSON(requestParameters.userCareer),
+      },
+      initOverrides,
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      UserCareerFromJSON(jsonValue),
+    );
+  }
+
+  /**
+   * １キャリアグループ内の１キャリアを登録する。
+   * １キャリアグループ内の１キャリア登録
+   */
+  async usersByUserIdCareergroupsByCareerGroupIdCareersPost(
+    requestParameters: UsersByUserIdCareergroupsByCareerGroupIdCareersPostRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<UserCareer> {
+    const response =
+      await this.usersByUserIdCareergroupsByCareerGroupIdCareersPostRaw(
+        requestParameters,
+        initOverrides,
+      );
+    return await response.value();
+  }
+
+  /**
    * １キャリアグループ内のキャリア群を最新化（総洗い替え）する。
    * 【未実装】キャリアグループ内キャリア群最新化
    */
@@ -549,8 +730,8 @@ export class UsersApi extends runtime.BaseAPI {
   }
 
   /**
-   * 指定ユーザーの指定１キャリアを取得する。
-   * １キャリア取得
+   * 指定ユーザーの指定１キャリアグループを取得する。
+   * １キャリアグループ取得
    */
   async usersByUserIdCareergroupsByCareerGroupIdGetRaw(
     requestParameters: UsersByUserIdCareergroupsByCareerGroupIdGetRequest,
@@ -604,8 +785,8 @@ export class UsersApi extends runtime.BaseAPI {
   }
 
   /**
-   * 指定ユーザーの指定１キャリアを取得する。
-   * １キャリア取得
+   * 指定ユーザーの指定１キャリアグループを取得する。
+   * １キャリアグループ取得
    */
   async usersByUserIdCareergroupsByCareerGroupIdGet(
     requestParameters: UsersByUserIdCareergroupsByCareerGroupIdGetRequest,
