@@ -1,11 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
-import { message } from "antd";
-import { addUserCareerServerAction } from "@/app/users/[userId]/careergroups/[careerGroupId]/_components/UserCareerGroupEdit/_components/UserCareerList/_components/UserCareerAdd/action";
+import { message, SelectProps } from "antd";
+import { addUserCareerServerAction } from "./action";
+import { Skill } from "@/lib/api";
 
-export const useUserCareerAdd = (userId: number, careerGroupId: number) => {
+export const useUserCareerAdd = (
+  userId: number,
+  careerGroupId: number,
+  skills: Skill[],
+) => {
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const [selectSkills, setSelectSkills] = useState<SelectProps["options"]>();
+
+  useEffect(() => {
+    if (skills) {
+      setSelectSkills(
+        skills.map((skill) => ({
+          label: skill.name,
+          value: skill.id,
+        })),
+      );
+    }
+  }, [skills]);
 
   const openModal = () => {
     setIsShowModal(true);
@@ -60,6 +77,7 @@ export const useUserCareerAdd = (userId: number, careerGroupId: number) => {
     closeModal,
     addUserCareer,
     contextHolder,
+    selectSkills,
   };
 };
 

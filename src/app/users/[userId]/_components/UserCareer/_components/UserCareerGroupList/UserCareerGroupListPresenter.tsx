@@ -5,7 +5,7 @@ import Title from "antd/es/typography/Title";
 import { Table, TableProps } from "antd";
 import Link from "next/link";
 import { useUserCareerGroupList } from "./useUserCareerGroupList";
-import { UserCareerGroupAdd } from "./_components/UserCareerGroupAdd";
+import React from "react";
 
 type ColumnType = Omit<UserCareerGroup, "careers">;
 
@@ -32,7 +32,6 @@ const UserCareerGroupListPresenter = ({ userId, careerGroups }: Props) => {
   return (
     <>
       <Title level={3}>UserCareerGroupList</Title>
-      <UserCareerGroupAdd userId={userId} />
       <Table dataSource={userCareerGroupWithKeys} columns={columns} />
     </>
   );

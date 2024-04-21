@@ -15,20 +15,29 @@ import {
   InputNumber,
   Modal,
   Row,
+  Select,
   Space,
 } from "antd";
 import Title from "antd/es/typography/Title";
 import styles from "./styles.module.css";
 import { useUserCareerAdd } from "./useUserCareerAdd";
+import { Skill } from "@/lib/api";
 
 type Props = {
   userId: number;
   careerGroupId: number;
+  skills: Skill[];
 };
 
-const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
-  const { isShowModal, openModal, closeModal, addUserCareer, contextHolder } =
-    useUserCareerAdd(userId, careerGroupId);
+const UserCareerAddPresenter = ({ userId, careerGroupId, skills }: Props) => {
+  const {
+    isShowModal,
+    openModal,
+    closeModal,
+    addUserCareer,
+    contextHolder,
+    selectSkills,
+  } = useUserCareerAdd(userId, careerGroupId, skills);
   return (
     <>
       {contextHolder}
@@ -250,6 +259,13 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                                     name={[subField.name, "version"]}
                                   >
                                     <Input placeholder="version" />
+                                  </Form.Item>
+                                  <Form.Item>
+                                    <Select
+                                      options={selectSkills}
+                                      showSearch
+                                      placeholder="skill"
+                                    />
                                   </Form.Item>
                                   <CloseOutlined
                                     onClick={() => {

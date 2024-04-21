@@ -4,7 +4,7 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Modal, Row } from "antd";
 import Title from "antd/es/typography/Title";
 import styles from "./styles.module.css";
-import { useUserCareerGroupAdd } from "@/app/users/[userId]/_components/UserCareerGroupList/_components/UserCareerGroupAdd/useUserCareerGroupAdd";
+import { useUserCareerGroupAdd } from "./useUserCareerGroupAdd";
 
 type Props = {
   userId: number;

@@ -1,4 +1,6 @@
+import { UserCareerAdd } from "./_components/UserCareerAdd";
 import { UserCareerGroupEditForm } from "./_components/UserCareerGroupEdit";
+import { UserCareerList } from "./_components/UserCareerList";
 
 const CareerGroupPage = ({
   params,
@@ -8,7 +10,11 @@ const CareerGroupPage = ({
   const userId = Number(params.userId);
   const careerGroupId = Number(params.careerGroupId);
   return (
-    <UserCareerGroupEditForm userId={userId} careerGroupId={careerGroupId} />
+    <>
+      <UserCareerGroupEditForm userId={userId} careerGroupId={careerGroupId} />
+      <UserCareerAdd userId={userId} careerGroupId={careerGroupId} />
+      <UserCareerList userId={userId} careerGroupId={careerGroupId} />
+    </>
   );
 };
 

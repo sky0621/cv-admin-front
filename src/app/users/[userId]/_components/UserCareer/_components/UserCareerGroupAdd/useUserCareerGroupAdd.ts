@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { message } from "antd";
-import { addUserGroupServerAction } from "@/app/users/[userId]/_components/UserCareerGroupList/_components/UserCareerGroupAdd/action";
+import { addUserGroupServerAction } from "./action";
 
 export const useUserCareerGroupAdd = (userId: number) => {
   const [isShowModal, setIsShowModal] = useState<boolean>(false);

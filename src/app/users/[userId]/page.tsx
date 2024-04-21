@@ -1,6 +1,6 @@
 import { Tabs, TabsProps } from "antd";
-import { UserBasic } from "@/app/users/[userId]/_components/UserBasic";
-import { UserCareerGroupList } from "@/app/users/[userId]/_components/UserCareerGroupList";
+import { UserBasic } from "./_components/UserBasic";
+import { UserCareer } from "./_components/UserCareer";
 
 const UserEditPage = async ({ params }: { params: { userId: string } }) => {
   const userId = Number(params.userId);
@@ -13,7 +13,7 @@ const UserEditPage = async ({ params }: { params: { userId: string } }) => {
     {
       key: "2",
       label: "Career",
-      children: <UserCareerGroupList userId={userId} />,
+      children: <UserCareer userId={userId} />,
     },
     {
       key: "3",
