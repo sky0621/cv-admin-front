@@ -33,6 +33,10 @@ export const useUserCareerAdd = (userId: number, careerGroupId: number) => {
           year: addUserGroupForm.toYear,
           month: addUserGroupForm.toMonth,
         },
+        tasks: addUserGroupForm.tasks.map((task) => ({
+          name: task.name,
+          description: task.descriptions.map((t) => t.description),
+        })),
       });
       messageApi.open({
         type: "success",
@@ -59,13 +63,23 @@ export const useUserCareerAdd = (userId: number, careerGroupId: number) => {
   };
 };
 
+const AddUserCareerFormTaskDescriptionSchema = z.object({
+  description: z.string(),
+});
+
+const AddUserCareerFormTaskSchema = z.object({
+  name: z.string(),
+  descriptions: z.array(AddUserCareerFormTaskDescriptionSchema),
+});
+
 const AddUserCareerFormSchema = z.object({
   name: z.string(),
-  descriptions: z.array(z.string()),
+  description: z.array(z.string()),
   fromYear: z.number(),
   fromMonth: z.number(),
   toYear: z.number(),
   toMonth: z.number(),
+  tasks: z.array(AddUserCareerFormTaskSchema),
 });
 
 type AddUserCareerForm = z.infer<typeof AddUserCareerFormSchema>;

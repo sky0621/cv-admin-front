@@ -1,12 +1,25 @@
 "use client";
 
-import { PlusCircleOutlined } from "@ant-design/icons";
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Col, Form, Input, InputNumber, Modal, Row } from "antd";
+import {
+  CloseOutlined,
+  MinusCircleOutlined,
+  PlusCircleOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
+  Row,
+  Space,
+} from "antd";
 import Title from "antd/es/typography/Title";
 import styles from "./styles.module.css";
 import { useUserCareerAdd } from "./useUserCareerAdd";
-import { MinusCircleOutlined } from "@ant-design/icons";
 
 type Props = {
   userId: number;
@@ -35,11 +48,11 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
             </Form.Item>
             <div>Description</div>
             <Form.List
-              name="descriptions"
+              name="description"
               rules={[
                 {
-                  validator: async (_, descriptions) => {
-                    if (!descriptions || descriptions.length < 1) {
+                  validator: async (_, description) => {
+                    if (!description || description.length < 1) {
                       return Promise.reject(
                         new Error("At least 1 descriptions"),
                       );
@@ -103,6 +116,76 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
             <Form.Item name="toMonth" rules={[{ required: true }]}>
               <InputNumber placeholder="month" style={{ width: "15%" }} />
             </Form.Item>
+            <div>Task</div>
+            <Form.List name="tasks">
+              {(fields, { add, remove }) => (
+                <div
+                  style={{
+                    display: "flex",
+                    rowGap: 16,
+                    flexDirection: "column",
+                  }}
+                >
+                  {fields.map((field) => (
+                    <Card
+                      size="small"
+                      title={`Task ${field.name + 1}`}
+                      key={field.key}
+                      extra={
+                        <CloseOutlined
+                          onClick={() => {
+                            remove(field.name);
+                          }}
+                        />
+                      }
+                    >
+                      <Form.Item label="Name" name={[field.name, "name"]}>
+                        <Input />
+                      </Form.Item>
+                      <Form.Item label="Description">
+                        <Form.List name={[field.name, "descriptions"]}>
+                          {(subFields, subOpt) => (
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                rowGap: 16,
+                              }}
+                            >
+                              {subFields.map((subField) => (
+                                <Space key={subField.key}>
+                                  <Form.Item
+                                    noStyle
+                                    name={[subField.name, "description"]}
+                                  >
+                                    <Input />
+                                  </Form.Item>
+                                  <CloseOutlined
+                                    onClick={() => {
+                                      subOpt.remove(subField.name);
+                                    }}
+                                  />
+                                </Space>
+                              ))}
+                              <Button
+                                type="dashed"
+                                onClick={() => subOpt.add()}
+                                block
+                              >
+                                + Add Sub Item
+                              </Button>
+                            </div>
+                          )}
+                        </Form.List>
+                      </Form.Item>
+                    </Card>
+                  ))}
+                  <Button type="dashed" onClick={() => add()} block>
+                    + Add Task
+                  </Button>
+                </div>
+              )}
+            </Form.List>
             <Form.Item>
               <Row>
                 <Col span={5}>
