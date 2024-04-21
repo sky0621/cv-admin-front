@@ -39,12 +39,42 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
           centered={true}
           cancelButtonProps={{ disabled: true, className: styles.cancel }}
           okButtonProps={{ disabled: true, className: styles.cancel }}
+          width={900}
         >
           <Title level={3}>Add UserCareer Form</Title>
           <Form onFinish={addUserCareer}>
+            <Row>
+              <Col span={7}>From</Col>
+              <Col span={6}>To</Col>
+            </Row>
+            <Row>
+              <Col span={3}>
+                <Form.Item name="fromYear" rules={[{ required: true }]}>
+                  <InputNumber placeholder="year" />
+                </Form.Item>
+              </Col>
+              <Col span={1}>/</Col>
+              <Col span={2}>
+                <Form.Item name="fromMonth" rules={[{ required: true }]}>
+                  <InputNumber placeholder="month" />
+                </Form.Item>
+              </Col>
+              <Col span={1}></Col>
+              <Col span={3}>
+                <Form.Item name="toYear" rules={[{ required: true }]}>
+                  <InputNumber placeholder="year" />
+                </Form.Item>
+              </Col>
+              <Col span={1}>/</Col>
+              <Col span={2}>
+                <Form.Item name="toMonth" rules={[{ required: true }]}>
+                  <InputNumber placeholder="month" />
+                </Form.Item>
+              </Col>
+            </Row>
             <div>Name</div>
             <Form.Item name="name" rules={[{ required: true }]}>
-              <Input style={{ width: "80%" }} />
+              <Input style={{ width: "95%" }} />
             </Form.Item>
             <div>Description</div>
             <Form.List
@@ -78,7 +108,7 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                         ]}
                         noStyle
                       >
-                        <Input style={{ width: "80%" }} />
+                        <Input style={{ width: "95%" }} />
                       </Form.Item>
                       {fields.length > 1 ? (
                         <MinusCircleOutlined
@@ -102,20 +132,6 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                 </>
               )}
             </Form.List>
-            <div>From</div>
-            <Form.Item name="fromYear" rules={[{ required: true }]}>
-              <InputNumber placeholder="year" style={{ width: "15%" }} />
-            </Form.Item>
-            <Form.Item name="fromMonth" rules={[{ required: true }]}>
-              <InputNumber placeholder="month" style={{ width: "15%" }} />
-            </Form.Item>
-            <div>To</div>
-            <Form.Item name="toYear" rules={[{ required: true }]}>
-              <InputNumber placeholder="year" style={{ width: "15%" }} />
-            </Form.Item>
-            <Form.Item name="toMonth" rules={[{ required: true }]}>
-              <InputNumber placeholder="month" style={{ width: "15%" }} />
-            </Form.Item>
             <div>Task</div>
             <Form.List name="tasks">
               {(fields, { add, remove }) => (
@@ -124,6 +140,7 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                     display: "flex",
                     rowGap: 16,
                     flexDirection: "column",
+                    marginBottom: "24px",
                   }}
                 >
                   {fields.map((field) => (
@@ -139,10 +156,12 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                         />
                       }
                     >
-                      <Form.Item label="Name" name={[field.name, "name"]}>
+                      <div>Name</div>
+                      <Form.Item name={[field.name, "name"]}>
                         <Input />
                       </Form.Item>
-                      <Form.Item label="Description">
+                      <div>Description</div>
+                      <Form.Item>
                         <Form.List name={[field.name, "descriptions"]}>
                           {(subFields, subOpt) => (
                             <div
@@ -158,7 +177,7 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                                     noStyle
                                     name={[subField.name, "description"]}
                                   >
-                                    <Input />
+                                    <Input style={{ width: "800px" }} />
                                   </Form.Item>
                                   <CloseOutlined
                                     onClick={() => {
@@ -172,7 +191,7 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                                 onClick={() => subOpt.add()}
                                 block
                               >
-                                + Add Sub Item
+                                + Add Description
                               </Button>
                             </div>
                           )}
@@ -186,7 +205,79 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                 </div>
               )}
             </Form.List>
-            <Form.Item>
+            <div>Skill</div>
+            <Form.List name="skillGroups">
+              {(fields, { add, remove }) => (
+                <div
+                  style={{
+                    display: "flex",
+                    rowGap: 16,
+                    flexDirection: "column",
+                  }}
+                >
+                  {fields.map((field) => (
+                    <Card
+                      size="small"
+                      title={`SkillGroup ${field.name + 1}`}
+                      key={field.key}
+                      extra={
+                        <CloseOutlined
+                          onClick={() => {
+                            remove(field.name);
+                          }}
+                        />
+                      }
+                    >
+                      <div>Label</div>
+                      <Form.Item name={[field.name, "label"]}>
+                        <Input />
+                      </Form.Item>
+                      <div>Skill</div>
+                      <Form.Item>
+                        <Form.List name={[field.name, "skills"]}>
+                          {(subFields, subOpt) => (
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                rowGap: 16,
+                              }}
+                            >
+                              {subFields.map((subField) => (
+                                <Space key={subField.key}>
+                                  <Form.Item
+                                    noStyle
+                                    name={[subField.name, "version"]}
+                                  >
+                                    <Input placeholder="version" />
+                                  </Form.Item>
+                                  <CloseOutlined
+                                    onClick={() => {
+                                      subOpt.remove(subField.name);
+                                    }}
+                                  />
+                                </Space>
+                              ))}
+                              <Button
+                                type="dashed"
+                                onClick={() => subOpt.add()}
+                                block
+                              >
+                                + Add Skill
+                              </Button>
+                            </div>
+                          )}
+                        </Form.List>
+                      </Form.Item>
+                    </Card>
+                  ))}
+                  <Button type="dashed" onClick={() => add()} block>
+                    + Add Skill Group
+                  </Button>
+                </div>
+              )}
+            </Form.List>
+            <Form.Item style={{ marginTop: "24px" }}>
               <Row>
                 <Col span={5}>
                   <Button type="default" onClick={closeModal}>
