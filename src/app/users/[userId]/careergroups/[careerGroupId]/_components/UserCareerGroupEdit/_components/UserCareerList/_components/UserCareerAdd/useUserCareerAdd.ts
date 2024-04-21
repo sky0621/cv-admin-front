@@ -16,13 +16,23 @@ export const useUserCareerAdd = (userId: number, careerGroupId: number) => {
   };
 
   const addUserCareer = async (values: any) => {
+    console.info(values);
     const addUserGroupForm: AddUserCareerForm =
       AddUserCareerFormSchema.parse(values);
+    console.info(addUserGroupForm);
 
     try {
       const res = await addUserCareerServerAction(userId, careerGroupId, {
         name: addUserGroupForm.name,
         description: addUserGroupForm.description,
+        from: {
+          year: addUserGroupForm.fromYear,
+          month: addUserGroupForm.fromMonth,
+        },
+        to: {
+          year: addUserGroupForm.toYear,
+          month: addUserGroupForm.toMonth,
+        },
       });
       messageApi.open({
         type: "success",
@@ -51,7 +61,7 @@ export const useUserCareerAdd = (userId: number, careerGroupId: number) => {
 
 const AddUserCareerFormSchema = z.object({
   name: z.string(),
-  description: z.array(z.string()),
+  descriptions: z.array(z.string()),
   fromYear: z.number(),
   fromMonth: z.number(),
   toYear: z.number(),

@@ -2,7 +2,7 @@
 
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, Col, Form, Input, Modal, Row } from "antd";
+import { Button, Col, Form, Input, InputNumber, Modal, Row } from "antd";
 import Title from "antd/es/typography/Title";
 import styles from "./styles.module.css";
 import { useUserCareerAdd } from "./useUserCareerAdd";
@@ -31,11 +31,11 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
           <Form onFinish={addUserCareer}>
             <div>Name</div>
             <Form.Item name="name" rules={[{ required: true }]}>
-              <Input style={{ width: "60%" }} />
+              <Input style={{ width: "80%" }} />
             </Form.Item>
             <div>Description</div>
             <Form.List
-              name="description"
+              name="descriptions"
               rules={[
                 {
                   validator: async (_, descriptions) => {
@@ -65,11 +65,11 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                         ]}
                         noStyle
                       >
-                        <Input />
+                        <Input style={{ width: "80%" }} />
                       </Form.Item>
                       {fields.length > 1 ? (
                         <MinusCircleOutlined
-                          className="dynamic-delete-button"
+                          className={styles.dynamicDeleteButton}
                           onClick={() => remove(field.name)}
                         />
                       ) : null}
@@ -89,6 +89,20 @@ const UserCareerAddPresenter = ({ userId, careerGroupId }: Props) => {
                 </>
               )}
             </Form.List>
+            <div>From</div>
+            <Form.Item name="fromYear" rules={[{ required: true }]}>
+              <InputNumber placeholder="year" style={{ width: "15%" }} />
+            </Form.Item>
+            <Form.Item name="fromMonth" rules={[{ required: true }]}>
+              <InputNumber placeholder="month" style={{ width: "15%" }} />
+            </Form.Item>
+            <div>To</div>
+            <Form.Item name="toYear" rules={[{ required: true }]}>
+              <InputNumber placeholder="year" style={{ width: "15%" }} />
+            </Form.Item>
+            <Form.Item name="toMonth" rules={[{ required: true }]}>
+              <InputNumber placeholder="month" style={{ width: "15%" }} />
+            </Form.Item>
             <Form.Item>
               <Row>
                 <Col span={5}>
