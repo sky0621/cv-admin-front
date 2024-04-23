@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { message, SelectProps } from "antd";
+import { message } from "antd";
 import { addUserCareerServerAction } from "./action";
 import { Skill } from "@/lib/api";
 
@@ -11,15 +11,23 @@ export const useUserCareerAdd = (
 ) => {
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
   const [messageApi, contextHolder] = message.useMessage();
-  const [selectSkills, setSelectSkills] = useState<SelectProps["options"]>();
+  const [selectSkills, setSelectSkills] = useState<
+    {
+      label: string;
+      value: string;
+    }[]
+  >([]);
+  const [selectedSkill, setSelectedSkill] = useState<number>(0);
 
   useEffect(() => {
     if (skills) {
       setSelectSkills(
-        skills.map((skill) => ({
-          label: skill.name,
-          value: skill.id,
-        })),
+        skills
+          .filter((skill) => skill.name !== undefined && skill.id !== undefined)
+          .map((skill) => ({
+            label: skill.name!!,
+            value: String(skill.id!!),
+          })),
       );
     }
   }, [skills]);
@@ -32,11 +40,18 @@ export const useUserCareerAdd = (
     setIsShowModal(false);
   };
 
+  const changedSkillSelect = (value: string) => {
+    setSelectedSkill(Number(value));
+  };
+
+  const filterSkillOption = (
+    input: string,
+    option?: { label: string; value: string },
+  ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+
   const addUserCareer = async (values: any) => {
-    console.info(values);
     const addUserGroupForm: AddUserCareerForm =
       AddUserCareerFormSchema.parse(values);
-    console.info(addUserGroupForm);
 
     try {
       const res = await addUserCareerServerAction(userId, careerGroupId, {
@@ -53,6 +68,13 @@ export const useUserCareerAdd = (
         tasks: addUserGroupForm.tasks.map((task) => ({
           name: task.name,
           description: task.descriptions.map((t) => t.description),
+        })),
+        skillGroups: addUserGroupForm.skillGroups.map((skillGroup) => ({
+          label: skillGroup.label,
+          skills: skillGroup.skills.map((skill) => ({
+            version: skill.version,
+            skill: { id: Number(skill.skillId) } as Skill,
+          })),
         })),
       });
       messageApi.open({
@@ -78,6 +100,8 @@ export const useUserCareerAdd = (
     addUserCareer,
     contextHolder,
     selectSkills,
+    changedSkillSelect,
+    filterSkillOption,
   };
 };
 
@@ -90,6 +114,16 @@ const AddUserCareerFormTaskSchema = z.object({
   descriptions: z.array(AddUserCareerFormTaskDescriptionSchema),
 });
 
+const AddUserCareerFormSkillSchema = z.object({
+  skillId: z.string(),
+  version: z.string(),
+});
+
+const AddUserCareerFormSkillGroupSchema = z.object({
+  label: z.string(),
+  skills: z.array(AddUserCareerFormSkillSchema),
+});
+
 const AddUserCareerFormSchema = z.object({
   name: z.string(),
   description: z.array(z.string()),
@@ -98,6 +132,7 @@ const AddUserCareerFormSchema = z.object({
   toYear: z.number(),
   toMonth: z.number(),
   tasks: z.array(AddUserCareerFormTaskSchema),
+  skillGroups: z.array(AddUserCareerFormSkillGroupSchema),
 });
 
 type AddUserCareerForm = z.infer<typeof AddUserCareerFormSchema>;

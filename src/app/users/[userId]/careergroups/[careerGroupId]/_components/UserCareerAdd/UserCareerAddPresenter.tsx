@@ -37,7 +37,14 @@ const UserCareerAddPresenter = ({ userId, careerGroupId, skills }: Props) => {
     addUserCareer,
     contextHolder,
     selectSkills,
+    changedSkillSelect,
+    filterSkillOption,
   } = useUserCareerAdd(userId, careerGroupId, skills);
+
+  const onSearch = (value: string) => {
+    console.log("search:", value);
+  };
+
   return (
     <>
       {contextHolder}
@@ -256,22 +263,37 @@ const UserCareerAddPresenter = ({ userId, careerGroupId, skills }: Props) => {
                                 <Space key={subField.key}>
                                   <Form.Item
                                     noStyle
-                                    name={[subField.name, "version"]}
+                                    name={[subField.name, "skillId"]}
                                   >
-                                    <Input placeholder="version" />
-                                  </Form.Item>
-                                  <Form.Item>
                                     <Select
                                       options={selectSkills}
                                       showSearch
                                       placeholder="skill"
+                                      optionFilterProp="children"
+                                      onChange={changedSkillSelect}
+                                      onSearch={onSearch}
+                                      filterOption={filterSkillOption}
+                                      style={{
+                                        width: "300px",
+                                        margin: "0 auto",
+                                      }}
                                     />
                                   </Form.Item>
-                                  <CloseOutlined
-                                    onClick={() => {
-                                      subOpt.remove(subField.name);
-                                    }}
-                                  />
+                                  <Space>
+                                    <Form.Item
+                                      noStyle
+                                      name={[subField.name, "version"]}
+                                    >
+                                      <Input placeholder="version" />
+                                    </Form.Item>
+                                  </Space>
+                                  <Space>
+                                    <CloseOutlined
+                                      onClick={() => {
+                                        subOpt.remove(subField.name);
+                                      }}
+                                    />
+                                  </Space>
                                 </Space>
                               ))}
                               <Button
