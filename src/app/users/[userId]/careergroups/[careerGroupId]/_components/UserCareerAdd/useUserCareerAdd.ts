@@ -116,7 +116,7 @@ const AddUserCareerFormTaskSchema = z.object({
 
 const AddUserCareerFormSkillSchema = z.object({
   skillId: z.string(),
-  version: z.string(),
+  version: z.string().optional(),
 });
 
 const AddUserCareerFormSkillGroupSchema = z.object({
